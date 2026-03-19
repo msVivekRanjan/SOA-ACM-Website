@@ -2,8 +2,11 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/soahosting/public_html/
-    - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp style.css $DEPLOYPATH
-    - /bin/cp script.js $DEPLOYPATH
-    - /bin/cp -R images $DEPLOYPATH
-    - /bin/cp -R assets $DEPLOYPATH
+
+    - /bin/cp dist/index.html $DEPLOYPATH
+    - /bin/cp dist/manifest.json $DEPLOYPATH
+    - /bin/cp dist/favicon.svg $DEPLOYPATH
+
+    - /bin/cp -R dist/assets $DEPLOYPATH
+    - /bin/cp -R dist/Images $DEPLOYPATH
+    - /bin/cp -R dist/Connect $DEPLOYPATH
