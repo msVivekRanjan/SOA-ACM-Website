@@ -190,7 +190,7 @@ const Team = () => {
             Meet Our <span className="text-[var(--acm-blue)]">Team</span>
           </h2>
           <div className="w-24 h-1 bg-[var(--acm-blue)] mx-auto rounded-full mb-4" />
-          <p className="text-xl text-black-400">Passionate students driving innovation and excellence.</p>
+          <p className="text-xl text-black-400">Passionate students driving innovation and excellence</p>
         </motion.div>
 
 
