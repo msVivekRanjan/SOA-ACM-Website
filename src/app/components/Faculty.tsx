@@ -32,7 +32,7 @@ const Faculty = () => {
   return (
     <section
       ref={ref}
-      className="py-24 px-4 bg-gradient-to-b from-white to-gray-50"
+      className="py-24 px-4 bg-gray-100"
     >
       <div className="max-w-6xl mx-auto">
         {/* Heading */}

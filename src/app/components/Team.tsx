@@ -159,6 +159,27 @@ const Team = () => {
   return (
     <section id="team" className="py-24 px-4 bg-white" ref={ref}>
       <div className="max-w-7xl mx-auto">
+        {/* <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.55 }}
+        >
+          <p className="text-xs font-bold tracking-[0.25em] uppercase text-[var(--acm-blue)] mb-3">
+            SOA ACM Student Chapter
+          </p>
+          <div className="flex items-end justify-between gap-6 flex-wrap">
+            <h2 className="text-6xl font-black text-gray-900 leading-none tracking-tight">
+              Meet the<br />
+              <span className="text-[var(--acm-blue)]">Team</span>
+            </h2>
+            <p className="text-gray-500 max-w-xs leading-relaxed text-sm">
+              Passionate students driving innovation, research, and excellence across computing.
+            </p>
+          </div>
+          <div className="mt-8 h-px bg-gray-200" />
+        </motion.div> */}
+
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -169,26 +190,30 @@ const Team = () => {
             Meet Our <span className="text-[var(--acm-blue)]">Team</span>
           </h2>
           <div className="w-24 h-1 bg-[var(--acm-blue)] mx-auto rounded-full mb-4" />
-          <p className="text-xl text-gray-600">
-            Passionate students driving innovation and excellence
-          </p>
+          <p className="text-xl text-black-400">Passionate students driving innovation and excellence</p>
         </motion.div>
 
 
 
         {/* Core Team */}
         <div className="mb-16">
-          <motion.h3
-            className="text-3xl font-semibold text-black mb-8 flex items-center gap-3"
-            initial={{ opacity: 0, x: -30 }}
+          <motion.div
+            className="flex items-center gap-5 mb-10"
+            initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
           >
-            <span className="text-[var(--acm-blue)]">●</span>
-            Core Team
-          </motion.h3>
+            <div className="flex items-center gap-3 shrink-0">
+              <span className="h-3 w-3 rounded-full bg-[var(--acm-blue)]" />
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--acm-blue)]">
+                Members
+              </span>
+            </div>
+            <div className="h-px flex-1 bg-gradient-to-r from-[var(--acm-blue)]/30 to-transparent" />
+            <h3 className="text-2xl font-bold text-gray-900 shrink-0">Core Team</h3>
+          </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {coreTeam.map((member, index) => (
               <TeamCard key={member.name} member={member} index={index} isInView={isInView} />
             ))}
