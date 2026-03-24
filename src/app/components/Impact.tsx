@@ -39,7 +39,7 @@ const Impact = () => {
   ];
 
   return (
-    <section className="py-24 px-4 bg-black relative overflow-hidden" ref={ref}>
+    <section className="py-24 px-4 bg-gradient-to-b from-black via-[#050505] to-black relative overflow-hidden" ref={ref}>
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -65,7 +65,7 @@ const Impact = () => {
           <p className="text-xl text-gray-400">Making a difference in the computing community</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <StatCard key={stat.label} stat={stat} index={index} isInView={isInView} />
           ))}

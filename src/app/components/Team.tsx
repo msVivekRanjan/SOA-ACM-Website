@@ -241,23 +241,29 @@ const Team = () => {
 
         {/* Join CTA */}
         <motion.div
-          className="text-center mt-16 p-12 bg-gradient-to-br from-[var(--acm-blue)]/5 to-transparent rounded-3xl border border-[var(--acm-blue)]/20"
+          className="text-center mt-16 p-12 rounded-3xl border border-[var(--acm-blue)]/20 
+                    bg-gradient-to-br from-white via-[var(--acm-blue)]/5 to-[var(--acm-blue)]/10
+                    shadow-lg shadow-[var(--acm-blue)]/10 backdrop-blur-sm"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <h3 className="text-3xl font-semibold text-black mb-4">
+          <h3 className="text-3xl font-semibold text-gray-900 mb-4 tracking-tight">
             Want to Join Our Team?
           </h3>
 
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+          <p className="text-gray-600 mb-6 max-w-2xl mx-auto leading-relaxed">
             We’re currently not recruiting core members. Stay tuned for future opportunities
             and upcoming recruitment drives.
           </p>
 
           <button
             disabled
-            className="px-8 py-3 bg-gray-300 text-gray-600 rounded-lg cursor-not-allowed"
+            className="px-8 py-3 rounded-lg cursor-not-allowed
+                      bg-gradient-to-r from-gray-200 to-gray-300
+                      text-gray-500 font-medium
+                      border border-gray-300
+                      shadow-inner"
           >
             Recruitment Currently Closed
           </button>
