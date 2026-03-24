@@ -12,15 +12,15 @@ export const eventsData = [
       'A concise exploration of how hackers think, identify vulnerabilities, and exploit systems — along with key insights into cybersecurity principles and defense strategies.',
     fullDescription:
       'Ever wondered what goes on inside the mind of a hacker? This session strips away the Hollywood myths and dives into the real techniques, mindsets, and methodologies that attackers use to find and exploit vulnerabilities. From reconnaissance and social engineering to zero-days and privilege escalation, you will walk away with a sharper understanding of the offensive side of cybersecurity — and, more importantly, how defenders can stay one step ahead. Whether you are a curious beginner or an aspiring security professional, this talk will reshape how you think about systems, trust, and digital safety.',
-    image: '/Images/e7h.webp',
+    image: '/Images/h3.webp',
     participants: null,
     location: 'Auditorium-C, BGA 2nd Floor',
     registrationLink: 'https://forms.gle/Nz57RtQR1tG4ftUE8',
     certificates: true,
     speaker: {
-      name: 'Asst. Prof. (Name TBA)',
+      name: 'Dr. Rourab Paul',
       designation: 'Assistant Professor, Shiv Nadar University, Chennai',
-      photo: '/Images/e7s.webp',
+      photo: '/Images/h1.webp',
       bio: 'Assistant Professor at Shiv Nadar University, Chennai, specialising in cryptography and VLSI design. He brings research experience from CERN (Switzerland), IIT Kanpur, NUS Singapore, and the University of Pisa, with a strong background in cybersecurity and advanced computing.',
     },
   },
