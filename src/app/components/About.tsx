@@ -32,7 +32,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 px-4 bg-white" ref={ref}>
+    <section id="about" className="py-24 bg-white relative overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-16"

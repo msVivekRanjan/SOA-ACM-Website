@@ -6,14 +6,19 @@ import Events from './components/Events';
 import Impact from './components/Impact';
 import Team from './components/Team';
 import Benefits from './components/Benefits';
+import Testimonials from './components/Testimonials';
 import JoinCTA from './components/JoinCTA';
 import Footer from './components/Footer';
 import EventDetails from './components/EventDetails';
+import CustomCursor from './components/ui/CustomCursor';
+
+import Navbar from './components/Navbar';
 
 // Home page with all sections
 const HomePage = () => {
   return (
     <>
+      <Navbar />
       <Hero />
       <About />
       <Faculty />
@@ -21,6 +26,7 @@ const HomePage = () => {
       <Impact />
       <Team />
       <Benefits />
+      <Testimonials />
       <JoinCTA />
       <Footer />
     </>
@@ -30,7 +36,8 @@ const HomePage = () => {
 export default function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-white">
+      <CustomCursor />
+      <div className="min-h-screen bg-gray-50">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/events/:id" element={<EventDetails />} />

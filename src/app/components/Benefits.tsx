@@ -39,12 +39,16 @@ const Benefits = () => {
   ];
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-gray-50 to-white" ref={ref}>
+    <section id="benefits" className="py-24 bg-blue-90 relative overflow-hidden" ref={ref}>
+
+      {/* Background Accent */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-[var(--acm-blue)]/10 blur-3xl rounded-full -z-10" />
+
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-5xl font-bold text-black mb-4">
@@ -58,26 +62,36 @@ const Benefits = () => {
           {benefits.map((benefit, index) => (
             <motion.div
               key={benefit.title}
-              className="group relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-transparent hover:shadow-2xl transition-all duration-500 overflow-hidden"
+              className="group relative bg-white/80 backdrop-blur rounded-2xl p-8 
+              border border-gray-200 hover:border-transparent 
+              hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] 
+              transition-all duration-500 overflow-hidden"
+
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                e.currentTarget.style.setProperty('--x', `${e.clientX - rect.left}px`);
+                e.currentTarget.style.setProperty('--y', `${e.clientY - rect.top}px`);
+              }}
+
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -8, scale: 1.02 }}
               whileTap={{ y: -4 }}
             >
               {/* Background Glow Effect */}
               <motion.div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500"
                 style={{
-                  background: `radial-gradient(circle at top left, ${benefit.color}10, transparent 70%)`,
+                  background: `radial-gradient(600px circle at var(--x) var(--y), ${benefit.color}20, transparent 40%)`
                 }}
               />
 
-              {/* Icon with Morph Animation */}
+              {/* Icon */}
               <motion.div
                 className="relative w-20 h-20 rounded-2xl flex items-center justify-center mb-6"
                 style={{
-                  backgroundColor: `${benefit.color}15`,
+                  backgroundColor: `${benefit.color}20`,
                 }}
                 whileHover={{
                   scale: 1.1,
@@ -88,6 +102,9 @@ const Benefits = () => {
                   rotate: [0, -5, 5, -5, 0],
                 }}
                 transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 15,
                   rotate: {
                     duration: 0.5,
                     ease: 'easeInOut',
@@ -95,7 +112,7 @@ const Benefits = () => {
                 }}
               >
                 <benefit.icon className="w-10 h-10 relative z-10" style={{ color: benefit.color }} />
-                
+
                 {/* Animated Ring */}
                 <motion.div
                   className="absolute inset-0 rounded-2xl border-2 opacity-0 group-hover:opacity-100"
@@ -115,7 +132,10 @@ const Benefits = () => {
               <h3 className="text-2xl font-semibold text-black mb-4 relative z-10">
                 {benefit.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed relative z-10">{benefit.description}</p>
+
+              <p className="text-gray-600 leading-relaxed relative z-10">
+                {benefit.description}
+              </p>
 
               {/* Decorative Line */}
               <motion.div
@@ -153,5 +173,4 @@ const Benefits = () => {
     </section>
   );
 };
-
 export default Benefits;

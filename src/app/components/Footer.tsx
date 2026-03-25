@@ -7,7 +7,7 @@ const Footer = () => {
     { label: 'Events', href: '#events' },
     { label: 'Team', href: '#team' },
     { label: 'Connect', href: '#join' },
-    
+
   ];
 
   const socialLinks = [
@@ -35,7 +35,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="md:col-span-2">
             <h3 className="text-3xl font-bold mb-4">
-              ACM <span className="text-[var(--acm-blue)]">SOA</span>
+              <span className="text-[var(--acm-blue)]">SOA ACM</span>
             </h3>
 
             <p className="text-gray-400 mb-6 leading-relaxed max-w-md">
@@ -103,7 +103,13 @@ const Footer = () => {
 
             <div className="flex items-center gap-2 text-sm text-gray-500">
               <span>Powered by</span>
-              <span className="text-[var(--acm-blue)] font-semibold">ACM</span>
+              <a
+                href="https://www.acm.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--acm-blue)] font-semibold"
+              >ACM
+              </a>
             </div>
 
             <div className="flex items-center gap-2 text-sm text-gray-500">

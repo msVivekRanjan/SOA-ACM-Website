@@ -19,6 +19,10 @@ const EventDetails = () => {
   const event = getEventById(id as string);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const openLightbox = (index: number) => {
     setSelectedImageIndex(index);
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
@@ -80,13 +84,13 @@ const EventDetails = () => {
         >
           <h1 className="text-6xl font-bold text-black mb-4">404</h1>
           <p className="text-xl text-gray-600 mb-8">Event not found</p>
-          <Link
-            to="/#events"
+          <button
+            onClick={() => navigate(-1)}
             className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--acm-blue)] text-white rounded-lg hover:bg-[var(--acm-dark-blue)] transition-colors duration-300"
           >
             <ArrowLeft className="w-5 h-5" />
             Back to Events
-          </Link>
+          </button>
         </motion.div>
       </div>
     );
@@ -102,13 +106,13 @@ const EventDetails = () => {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <Link
-            to="/#events"
+          <button
+            onClick={() => navigate(-1)}
             className="inline-flex items-center gap-2 text-[var(--acm-blue)] hover:text-[var(--acm-dark-blue)] transition-colors duration-300"
           >
             <ArrowLeft className="w-5 h-5" />
             Back to Events
-          </Link>
+          </button>
         </motion.div>
 
         {/* Hero Image */}

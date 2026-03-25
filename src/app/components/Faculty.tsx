@@ -30,10 +30,7 @@ const Faculty = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section
-      ref={ref}
-      className="py-24 px-4 bg-gray-100"
-    >
+    <section id="faculty" className="py-24 bg-gray-50 relative overflow-hidden" ref={ref}>
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <motion.div
@@ -53,17 +50,16 @@ const Faculty = () => {
           {facultyData.map((faculty, index) => (
             <motion.div
               key={index}
-              className={`flex flex-col ${
-                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-              } items-center gap-12 bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 group relative overflow-hidden`}
+              className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                } items-center gap-12 bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 group relative overflow-hidden`}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              whileHover={{ 
+              whileHover={{
                 y: -8,
                 boxShadow: '0 25px 50px -12px rgba(0, 133, 195, 0.25)',
               }}
-              whileTap={{ 
+              whileTap={{
                 scale: 0.98,
                 boxShadow: '0 25px 50px -12px rgba(0, 133, 195, 0.25)',
               }}
@@ -94,20 +90,20 @@ const Faculty = () => {
                 whileTap={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2 }}
               >
                 {/* Animated Background Rotate */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-gradient-to-br from-[var(--acm-blue)] to-[var(--acm-dark-blue)] rounded-2xl"
                   initial={{ rotate: 3 }}
-                  whileHover={{ 
+                  whileHover={{
                     rotate: index % 2 === 0 ? 6 : -6,
                     scale: 1.05,
                   }}
-                  whileTap={{ 
+                  whileTap={{
                     rotate: index % 2 === 0 ? 6 : -6,
                     scale: 1.05,
                   }}
                   transition={{ duration: 0.3 }}
                 />
-                
+
                 {/* Image Container with Hover Effect */}
                 <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-white shadow-2xl">
                   <ImageWithFallback
@@ -115,7 +111,7 @@ const Faculty = () => {
                     alt={faculty.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-active:scale-110"
                   />
-                  
+
                   {/* Overlay on Hover/Active */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-t from-[var(--acm-blue)]/20 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500"
@@ -130,21 +126,21 @@ const Faculty = () => {
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                <motion.h3 
+                <motion.h3
                   className="text-3xl font-bold text-black mb-2 transition-colors duration-300 group-hover:text-[var(--acm-blue)] group-active:text-[var(--acm-blue)]"
                   whileHover={{ x: 5 }}
                   whileTap={{ x: 5 }}
                 >
                   {faculty.name}
                 </motion.h3>
-                <motion.p 
+                <motion.p
                   className="text-xl text-[var(--acm-blue)] mb-4"
                   whileHover={{ x: 5 }}
                   whileTap={{ x: 5 }}
                 >
                   {faculty.designation}
                 </motion.p>
-                <motion.p 
+                <motion.p
                   className="text-gray-600 mb-8"
                   whileHover={{ x: 5 }}
                   whileTap={{ x: 5 }}
@@ -153,13 +149,13 @@ const Faculty = () => {
                 </motion.p>
 
                 {/* Quote */}
-                <motion.div 
+                <motion.div
                   className="relative bg-gradient-to-br from-[var(--acm-blue)]/5 to-transparent rounded-2xl p-6 border-l-4 border-[var(--acm-blue)] overflow-hidden"
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.02,
                     backgroundColor: 'rgba(0, 133, 195, 0.08)',
                   }}
-                  whileTap={{ 
+                  whileTap={{
                     scale: 1.02,
                     backgroundColor: 'rgba(0, 133, 195, 0.08)',
                   }}
@@ -174,7 +170,7 @@ const Faculty = () => {
                   >
                     <Quote className="w-10 h-10 text-[var(--acm-blue)] absolute top-4 right-4" />
                   </motion.div>
-                  
+
                   {/* Shine Effect on Hover/Tap */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-active:opacity-20"
@@ -183,7 +179,7 @@ const Faculty = () => {
                     whileTap={{ x: '100%' }}
                     transition={{ duration: 0.8 }}
                   />
-                  
+
                   <p className="text-lg text-gray-700 italic leading-relaxed relative z-10">
                     "{faculty.quote}"
                   </p>

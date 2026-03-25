@@ -229,3 +229,50 @@ export const getUpcomingEvents = () => {
 export const getPastEvents = () => {
   return eventsData.filter((event) => event.status === 'past');
 };
+
+export const testimonialsData = [
+  {
+    id: 1,
+    name: 'Dr. Debahuti Mishra',
+    role: 'HOD of CSE, SOA University',
+    quote: 'The ACM Student Chapter has consistently demonstrated technical brilliance and leadership. It is a vital platform for our students to innovate, collaborate, and prepare for the dynamic computing industry.',
+    image: 'https://i.pravatar.cc/150?u=debahuti',
+  },
+  {
+    id: 2,
+    name: 'Dr. Bharat Jyoti Ranjan Saho',
+    role: 'HOD of CYSC, SOA University',
+    quote: 'Initiatives like these bridge the gap between academic learning and industry demands. The dedication of this chapter towards fostering research and practical skills is truly commendable.',
+    image: '/Images/e0s.webp', // Using his photo from events
+  },
+  {
+    id: 3,
+    name: 'Prof. Prasanta K. Panigrahi',
+    role: 'Director CQST & Former Director IISER Kolkata',
+    quote: 'Through collaboration and active engagement with emerging technologies like quantum computing and AI, this chapter is taking our students to the next level of scientific excellence.',
+    image: '/Images/e6s.webp', // Using his photo from events
+  },
+  {
+    id: 4,
+    name: 'Dr. Rourab Paul',
+    role: 'Assistant Professor, Shiv Nadar University',
+    quote: 'It is essential to strip away the myths and dive into the real techniques and mindsets. The curiosity and engagement of the SOA ACM students show they are ready to become the next generation of security professionals.',
+    image: '/Images/h1.webp',
+  },
+  {
+    id: 5,
+    name: 'Mr. Sitesh Behera',
+    role: 'Sr. DevOps Manager, Plivo',
+    quote: 'Seeing over 350 students actively engaged across multiple disciplines was incredible. The chapter is doing a fantastic job bridging the gap between academic learning and modern DevOps careers.',
+    image: '/Images/e2s.webp',
+  },
+  {
+    id: 6,
+    name: 'Mr. Pawan Kumar',
+    role: 'SDE I, Fidelity International',
+    quote: 'Through hands-on coding sessions, these students have proven they are capable of developing and deploying real-world mobile applications. The practical knowledge they are gaining here is invaluable.',
+    image: '/Images/e1s.webp',
+  }
+];
+
+export const getTestimonials = () => testimonialsData;

@@ -88,7 +88,7 @@ const Events = () => {
   };
 
   return (
-    <section id="events" className="py-28 px-4 bg-gray-50" ref={ref}>
+    <section id="events" className="py-24 relative bg-white" ref={ref}>
       <div className="max-w-7xl mx-auto">
 
         {/* ── Page header ──────────────────────────────────────── */}
@@ -376,11 +376,10 @@ const Events = () => {
                     />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
                     <span
-                      className={`absolute bottom-3 left-3 px-2 py-0.5 rounded text-xs font-semibold ${
-                        event.mode === 'Online'
-                          ? 'bg-emerald-500 text-white'
-                          : 'bg-orange-500 text-white'
-                      }`}
+                      className={`absolute bottom-3 left-3 px-2 py-0.5 rounded text-xs font-semibold ${event.mode === 'Online'
+                        ? 'bg-emerald-500 text-white'
+                        : 'bg-orange-500 text-white'
+                        }`}
                     >
                       {event.mode}
                     </span>

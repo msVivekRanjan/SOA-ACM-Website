@@ -151,13 +151,13 @@ const Team = () => {
         '/Images/15.webp',
       linkedin: 'https://www.linkedin.com/in/ayush-ranjan-pradhan-008468309/',
     },
-    
+
 
 
   ];
 
   return (
-    <section id="team" className="py-24 px-4 bg-white" ref={ref}>
+    <section id="team" className="py-24 bg-white relative overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto">
         {/* <motion.div
           className="mb-16"
@@ -290,39 +290,41 @@ interface TeamCardProps {
 const TeamCard = ({ member, index, isInView }: TeamCardProps) => {
   return (
     <motion.div
-      className="group relative"
+      className="group relative h-full flex"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
     >
-      <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500">
-        {/* Image Container */}
-        <div className="relative h-80 overflow-hidden">
+      <div className="relative w-full overflow-hidden rounded-2xl bg-white shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-500 flex flex-col">
+        {/* Image Container - Fixed Aspect Ratio */}
+        <div className="relative aspect-[4/5] w-full overflow-hidden shrink-0">
           <ImageWithFallback
             src={member.image}
             alt={member.name}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-          {/* LinkedIn Icon - Slides in on hover */}
+          {/* LinkedIn Icon */}
           <motion.a
             href={member.linkedin}
-            className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg"
-            initial={{ opacity: 0, x: 20 }}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-3 right-3 w-8 h-8 sm:w-10 sm:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg"
+            initial={{ opacity: 0, scale: 0.8 }}
             whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 1.1 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5 + index * 0.1 }}
+            whileTap={{ scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.1 }}
           >
-            <Linkedin className="w-5 h-5 text-[var(--acm-blue)]" />
+            <Linkedin className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--acm-blue)]" />
           </motion.a>
         </div>
 
-        {/* Info */}
-        <div className="p-6 relative">
-          <h4 className="text-xl font-semibold text-black mb-2">{member.name}</h4>
-          <p className="text-[var(--acm-blue)]">{member.role}</p>
+        {/* Info Box - Flexible Height */}
+        <div className="p-4 sm:p-5 relative flex-1 flex flex-col justify-center bg-white z-10">
+          <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 leading-tight">{member.name}</h4>
+          <p className="text-sm font-semibold text-[var(--acm-blue)]">{member.role}</p>
 
           {/* Animated Border */}
           <motion.div
@@ -332,9 +334,6 @@ const TeamCard = ({ member, index, isInView }: TeamCardProps) => {
             transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
           />
         </div>
-
-        {/* Tilt Effect Border */}
-        <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[var(--acm-blue)] transition-all duration-300 pointer-events-none" />
       </div>
     </motion.div>
   );
