@@ -236,7 +236,7 @@ export const testimonialsData = [
     name: 'Dr. Debahuti Mishra',
     role: 'HOD of CSE, SOA University',
     quote: 'The ACM Student Chapter has consistently demonstrated technical brilliance and leadership. It is a vital platform for our students to innovate, collaborate, and prepare for the dynamic computing industry.',
-    image: 'https://i.pravatar.cc/150?u=debahuti',
+    image: '/Images/f3.webp',
   },
   {
     id: 2,
