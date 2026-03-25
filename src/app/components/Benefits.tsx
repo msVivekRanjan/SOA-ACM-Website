@@ -39,7 +39,7 @@ const Benefits = () => {
   ];
 
   return (
-    <section id="benefits" className="py-24 bg-blue-90 relative overflow-hidden" ref={ref}>
+    <section id="benefits" className="px-4 sm:px-6 lg:px-8 py-24 bg-blue-90 relative overflow-hidden" ref={ref}>
 
       {/* Background Accent */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-[var(--acm-blue)]/10 blur-3xl rounded-full -z-10" />

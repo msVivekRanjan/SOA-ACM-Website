@@ -30,7 +30,7 @@ const Faculty = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="faculty" className="py-24 bg-gray-50 relative overflow-hidden" ref={ref}>
+    <section id="faculty" className="px-4 sm:px-6 lg:px-8 py-24 bg-gray-50 relative overflow-hidden" ref={ref}>
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <motion.div

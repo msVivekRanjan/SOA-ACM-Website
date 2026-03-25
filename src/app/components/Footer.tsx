@@ -18,7 +18,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-black text-white pt-20 pb-8 px-4 relative overflow-hidden">
+    <footer className="px-4 sm:px-6 lg:px-8 bg-[#0f172a] text-white pt-20 pb-8 px-4 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div

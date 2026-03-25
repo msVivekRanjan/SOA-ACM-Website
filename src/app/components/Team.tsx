@@ -157,7 +157,7 @@ const Team = () => {
   ];
 
   return (
-    <section id="team" className="py-24 bg-white relative overflow-hidden" ref={ref}>
+    <section id="team" className="px-4 sm:px-6 lg:px-8 py-24 bg-white relative overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto">
         {/* <motion.div
           className="mb-16"
@@ -290,7 +290,7 @@ interface TeamCardProps {
 const TeamCard = ({ member, index, isInView }: TeamCardProps) => {
   return (
     <motion.div
-      className="group relative h-full flex"
+      className="px-4 sm:px-6 lg:px-8 group relative h-full flex"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}

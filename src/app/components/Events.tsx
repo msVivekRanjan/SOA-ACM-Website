@@ -52,7 +52,7 @@ const SectionHeading = ({
   title: string;
   pulse?: boolean;
 }) => (
-  <div className="flex items-center gap-5 mb-12">
+  <div className="px-4 sm:px-6 lg:px-8 flex items-center gap-5 mb-12">
     <div className="flex items-center gap-3 shrink-0">
       {pulse ? (
         <span className="relative flex h-3 w-3">
@@ -88,7 +88,7 @@ const Events = () => {
   };
 
   return (
-    <section id="events" className="py-24 relative bg-white" ref={ref}>
+    <section id="events" className="px-4 sm:px-6 lg:px-8 py-24 relative bg-white" ref={ref}>
       <div className="max-w-7xl mx-auto">
 
         {/* ── Page header ──────────────────────────────────────── */}

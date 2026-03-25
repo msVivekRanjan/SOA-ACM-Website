@@ -58,7 +58,7 @@ const Testimonials = () => {
   }, [isHovered, paginate]);
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden" ref={ref}>
+    <section className="px-4 sm:px-6 lg:px-8 py-24 bg-white relative overflow-hidden" ref={ref}>
       <div className="max-w-6xl mx-auto px-4">
         {/* Header Section */}
         <motion.div
