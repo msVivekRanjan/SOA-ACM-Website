@@ -24,7 +24,6 @@ export const eventsData = [
       bio: 'Assistant Professor at Shiv Nadar University, Chennai, specialising in cryptography and VLSI design. He brings research experience from CERN (Switzerland), IIT Kanpur, NUS Singapore, and the University of Pisa, with a strong background in cybersecurity and advanced computing.',
     },
   },
-
   {
     id: '1',
     title: 'Quantum Computing In 45 Minutes',
@@ -35,19 +34,17 @@ export const eventsData = [
     category: 'Session',
     description: 'The Core Ideas and the Big Opportunities',
     fullDescription:
-      'Quantum Computing in 45 Minutes: The Core Ideas and the Big Opportunities is an engaging and accessible session that takes you beyond classical computing to explore the transformative world of quantum technology. Covering fundamental concepts such as qubits, superposition, and entanglement, the talk also highlights real-world applications across cybersecurity, artificial intelligence, finance, healthcare, and more. Designed for curious students, tech enthusiasts, developers, aspiring researchers, and industry leaders, this session simplifies complex ideas while uncovering the vast opportunities quantum computing offers for innovation, research, and the future of computation.',
+      'Quantum Computing in 45 Minutes: The Core Ideas and the Big Opportunities is an engaging and accessible session that takes you beyond classical computing to explore the transformative world of quantum technology. Covering fundamental concepts such as qubits, superposition, and entanglement, the talk also highlights real-world applications across cybersecurity, artificial intelligence, finance, healthcare, and more.',
     image: '/Images/e6h.webp',
     participants: '80+',
     location: 'E-Block : 114',
     speaker: {
       name: 'Prof. Prasanta K. Panigrahi',
-      designation:
-        'Former Director IISER Kolkata, Director Center for Quantum Science and Technology, SOA University',
+      designation: 'Former Director IISER Kolkata, Director Center for Quantum Science and Technology, SOA University',
       photo: '/Images/e6s.webp',
-      bio: 'Prof. Prasanta K. Panigrahi is the Director of CQST at SOA University and former Director of IISER Kolkata. A leading quantum physicist, he heads a prestigious DST-QuEST project on Quantum Information Technologies, serves as an international research evaluator and journal referee, and is a Fellow of the National Academy of Sciences, India.',
+      bio: 'Prof. Prasanta K. Panigrahi is the Director of CQST at SOA University and former Director of IISER Kolkata. A leading quantum physicist, he heads a prestigious DST-QuEST project on Quantum Information Technologies.',
     },
   },
-
   {
     id: '6',
     title: 'Introduction to Biomedical Engineering & Medical Imaging Processing',
@@ -59,7 +56,7 @@ export const eventsData = [
     description: 'Official Induction Of SOA ACM Members and Webinar',
     document: '/documents/SOA ACM HandOut.pdf',
     fullDescription:
-      'Research Odyssey is the flagship research initiative of ACM, a distinguished talk series conducted twice every month to introduce students to diverse and emerging areas of research in computing and technology. Designed as a platform for intellectual exchange, it brings together researchers, academicians, and innovators to share insights, breakthroughs, and real-world applications across domains. The initiative was launched with the vision of cultivating a strong research culture within the student community encouraging curiosity beyond the classroom and inspiring deeper engagement with cutting-edge ideas. Through Research Odyssey, ACM aims to bridge the gap between theory and exploration, empower students to think critically, and motivate them to pursue innovation, inquiry, and impactful contributions to the field of computing.',
+      'Research Odyssey is the flagship research initiative of ACM, a distinguished talk series conducted twice every month to introduce students to diverse and emerging areas of research in computing and technology.',
     image: '/Images/e5h.webp',
     participants: '250+',
     location: 'Bansuri Guru Auditorium A',
@@ -67,7 +64,7 @@ export const eventsData = [
       name: 'Dr. Dibyasundar Das',
       designation: 'Assistant Professor, Birla Institute of Technology (BIT)',
       photo: '/Images/e5s.webp',
-      bio: 'Dr. Dibyasundar Das is an Assistant Professor of CSE at BIT Mesra, Deoghar campus, specializing in Computer Vision and Deep Learning. He earned his Ph.D. from NIT Rourkela (2021) in OCR-focused research and previously served at ITER, SOA University.',
+      bio: 'Dr. Dibyasundar Das is an Assistant Professor of CSE at BIT Mesra, Deoghar campus, specializing in Computer Vision and Deep Learning.',
     },
     gallery: [
       '/Images/e5a.webp',
@@ -81,7 +78,6 @@ export const eventsData = [
       '/Images/e5i.webp',
     ],
   },
-
   {
     id: '5',
     title: 'Research Fundamentals and Effective Poster Presentation',
@@ -91,10 +87,9 @@ export const eventsData = [
     mode: 'Offline',
     status: 'past',
     category: 'Session',
-    description:
-      'Practical introduction to the research fundamentals and guidelines for poster presentation.',
+    description: 'Practical introduction to the research fundamentals and guidelines for poster presentation.',
     fullDescription:
-      'The event was designed for students interested in poster and research presentation on how to present your paper in an effective manner also an awareness talk that led students to develop interest in research and innovation.',
+      'The event was designed for students interested in poster and research presentation on how to present your paper in an effective manner.',
     image: '/Images/e0h.webp',
     participants: '90+',
     location: 'Seminar Hall 2, 2nd floor BGA',
@@ -102,7 +97,7 @@ export const eventsData = [
       name: 'Dr Bharat Jyoti Ranjan Sahu',
       designation: 'Associate Professor, SOA University',
       photo: '/Images/e0s.webp',
-      bio: 'Associate Professor at Siksha O Anusandhan, Bhubaneswar, with a Ph.D. in Computer Engineering and research expertise in wireless communication (LTE, 5G), IoT, Named Data Networking, and transport protocols. Former Post-Doctoral Researcher at Kyungpook National University, South Korea, and co-author of 8 SCI/SCIE journal publications.',
+      bio: 'Associate Professor at Siksha O Anusandhan, Bhubaneswar, with a Ph.D. in Computer Engineering.',
     },
     gallery: [
       '/Images/e0a.webp',
@@ -113,7 +108,6 @@ export const eventsData = [
       '/Images/e0f.webp',
     ],
   },
-
   {
     id: '2',
     title: 'Mobile App Development with Flutter',
@@ -124,7 +118,7 @@ export const eventsData = [
     category: 'Workshop',
     description: '5-Day Hands-On Training Program',
     fullDescription:
-      'This workshop aims to equip students with the programming and design skills required to build cross-platform mobile applications using Flutter and Dart. Through hands-on coding sessions, participants will learn how to develop and deploy Android and iOS apps using a single codebase, understand widget trees, handle state management, integrate APIs and Firebase, and design responsive UI/UX. The event seeks to bridge academic learning with real-world software development practices, inspiring students to explore mobile app development as a career pathway. By the end of the training, participants will have completed a mini-project app and gained practical knowledge applicable to internships and product-based roles.',
+      'This workshop aims to equip students with the programming and design skills required to build cross-platform mobile applications using Flutter and Dart.',
     image: '/Images/e1h.webp',
     participants: '25+',
     location: 'Conference Hall, Ground Floor, BGA',
@@ -132,7 +126,7 @@ export const eventsData = [
       name: 'Mr. Pawan Kumar',
       designation: 'Software Development Engineer I (SDE-I), Fidelity International',
       photo: '/Images/e1s.webp',
-      bio: 'Pawan Kumar is an SDE I at Fidelity International and a B.Tech graduate, specializing in scalable backend systems, cloud-native technologies, and Flutter-based application development.',
+      bio: 'Pawan Kumar is an SDE I at Fidelity International, specializing in scalable backend systems and Flutter-based application development.',
     },
     gallery: [
       '/Images/e1a.webp',
@@ -141,7 +135,6 @@ export const eventsData = [
       '/Images/e1d.webp',
     ],
   },
-
   {
     id: '3',
     title: 'Cloud Computing - The Next Frontier',
@@ -152,7 +145,7 @@ export const eventsData = [
     category: 'Tech Talk',
     description: 'A tech talk on the future of cloud computing and modern DevOps careers.',
     fullDescription:
-      'The SOA ACM Student Chapter organized a Tech Talk on "Cloud Computing - The Next Frontier" on 27 April 2024 at the Bansuri Guru Auditorium, featuring Mr. Sitesh Behera, Senior DevOps Manager at PLIVO and an ITER alumnus, who shared insights on the evolution of cloud computing, including serverless architectures, AI–cloud integration, cloud security, and emerging career opportunities in cloud and DevOps, engaging over 350 students across multiple disciplines.',
+      'The SOA ACM Student Chapter organized a Tech Talk on "Cloud Computing - The Next Frontier" on 27 April 2024 at the Bansuri Guru Auditorium, engaging over 350 students across multiple disciplines.',
     image: '/Images/e2h.webp',
     participants: '350+',
     location: 'Bansuri Guru Auditorium',
@@ -160,7 +153,7 @@ export const eventsData = [
       name: 'Mr Sitesh Behera',
       designation: 'Sr. DevOps Manager, Plivo',
       photo: '/Images/e2s.webp',
-      bio: 'Sitesh Behera is a Senior DevOps and Platform Engineering leader with 13+ years of experience in cloud automation, scalable infrastructure, and reliability engineering, currently serving as Senior DevOps Manager at Plivo Inc.',
+      bio: 'Sitesh Behera is a Senior DevOps and Platform Engineering leader with 13+ years of experience.',
     },
     gallery: [
       '/Images/e2a.webp',
@@ -169,7 +162,6 @@ export const eventsData = [
       '/Images/e2d.webp',
     ],
   },
-
   {
     id: '4',
     title: '4-Day Training Program on Cloud Computing and DevOps',
@@ -180,7 +172,7 @@ export const eventsData = [
     category: 'Training Programme',
     description: 'A hands-on training on cloud computing and DevOps fundamentals.',
     fullDescription:
-      'A 4-day intensive training program on Cloud Computing and DevOps that provided students with hands-on experience in cloud platforms, automation workflows, CI/CD pipelines, containerization, and real-world application deployment, guided by industry experts to bridge the gap between academic learning and industry practices.',
+      'A 4-day intensive training program on Cloud Computing and DevOps that provided students with hands-on experience in cloud platforms, automation workflows, CI/CD pipelines, and containerization.',
     image: '/Images/e3h.webp',
     participants: '35+',
     location: 'SOA Campus - Computer Lab',
@@ -189,46 +181,55 @@ export const eventsData = [
         name: 'Mr. Sourabh Kumar Singh',
         designation: 'SRE Intern, EPAM',
         photo: '/Images/e3s1.webp',
-        bio: 'DevOps Intern with hands-on experience in CI/CD pipelines, and containerized infrastructure using Docker and Kubernetes.',
+        bio: 'DevOps Intern with hands-on experience in CI/CD pipelines and containerized infrastructure.',
       },
       {
         name: 'Mr. Shri Rijul Das',
         designation: 'SRE Intern, EPAM',
         photo: '/Images/e3s2.webp',
-        bio: 'SRE Intern specializing in system reliability, automation, observability, and building fault-tolerant, scalable cloud systems.',
+        bio: 'SRE Intern specializing in system reliability, automation, and observability.',
       },
       {
         name: 'Mr. Amrit Kaphley',
         designation: 'DevOps Intern, PLIVO',
         photo: '/Images/e3s3.webp',
-        bio: 'DevOps Intern focused on cloud-native infrastructure and optimizing deployment workflows for scalable systems.',
+        bio: 'DevOps Intern focused on cloud-native infrastructure and deployment workflows.',
       },
       {
         name: 'Mr. Shashwat K. Pandhey',
         designation: 'SRE Intern, PLIVO',
         photo: '/Images/e3s4.webp',
-        bio: 'SRE Intern passionate about reliability engineering, automation, observability, and building resilient, production-grade cloud systems.',
+        bio: 'SRE Intern passionate about reliability engineering and resilient cloud systems.',
       },
     ],
     gallery: ['/Images/e3a.webp', '/Images/e3b.webp', '/Images/e3c.webp'],
   },
 ];
 
-export const getEventById = (id) => {
-  return eventsData.find((event) => event.id === id);
-};
+export const getEventById = (id) => eventsData.find((event) => event.id === id);
+export const getFeaturedEvent = () => eventsData.find((event) => event.status === 'past') || eventsData[0];
+export const getUpcomingEvents = () => eventsData.filter((event) => event.status === 'upcoming');
+export const getPastEvents = () => eventsData.filter((event) => event.status === 'past');
 
-export const getFeaturedEvent = () => {
-  return eventsData.find((event) => event.status === 'past') || eventsData[0];
-};
-
-export const getUpcomingEvents = () => {
-  return eventsData.filter((event) => event.status === 'upcoming');
-};
-
-export const getPastEvents = () => {
-  return eventsData.filter((event) => event.status === 'past');
-};
+// ── Hand-picked images for the About section bento grid ──────────────────────
+// Edit this list freely to swap / add / remove photos shown in the About grid.
+export const aboutGalleryImages = [
+  '/Images/e5h.webp',
+  '/Images/e0h.webp',
+  '/Images/e1h.webp',
+  '/Images/e2h.webp',
+  '/Images/e3h.webp',
+  '/Images/e6h.webp',
+  '/Images/h3.webp',
+  '/Images/e5a.webp',
+  '/Images/e5b.webp',
+  '/Images/e0a.webp',
+  '/Images/e0b.webp',
+  '/Images/e1a.webp',
+  '/Images/e2a.webp',
+  '/Images/e3a.webp',
+];
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const testimonialsData = [
   {
@@ -240,17 +241,17 @@ export const testimonialsData = [
   },
   {
     id: 2,
-    name: 'Dr. Bharat Jyoti Ranjan Saho',
+    name: 'Dr. Bharat Jyoti Ranjan Sahu',
     role: 'HOD of CYSC, SOA University',
     quote: 'Initiatives like these bridge the gap between academic learning and industry demands. The dedication of this chapter towards fostering research and practical skills is truly commendable.',
-    image: '/Images/e0s.webp', // Using his photo from events
+    image: '/Images/e0s.webp',
   },
   {
     id: 3,
     name: 'Prof. Prasanta K. Panigrahi',
     role: 'Director CQST & Former Director IISER Kolkata',
     quote: 'Through collaboration and active engagement with emerging technologies like quantum computing and AI, this chapter is taking our students to the next level of scientific excellence.',
-    image: '/Images/e6s.webp', // Using his photo from events
+    image: '/Images/e6s.webp',
   },
   {
     id: 4,
@@ -272,7 +273,7 @@ export const testimonialsData = [
     role: 'SDE I, Fidelity International',
     quote: 'Through hands-on coding sessions, these students have proven they are capable of developing and deploying real-world mobile applications. The practical knowledge they are gaining here is invaluable.',
     image: '/Images/e1s.webp',
-  }
+  },
 ];
 
 export const getTestimonials = () => testimonialsData;
