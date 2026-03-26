@@ -5,6 +5,7 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  font-size: 90%;
 }
 
 /* Hide scrollbar but keep functionality */

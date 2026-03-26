@@ -211,7 +211,6 @@ export const getFeaturedEvent = () => eventsData.find((event) => event.status ==
 export const getUpcomingEvents = () => eventsData.filter((event) => event.status === 'upcoming');
 export const getPastEvents = () => eventsData.filter((event) => event.status === 'past');
 
-// ── Hand-picked images for the About section bento grid ──────────────────────
 // Edit this list freely to swap / add / remove photos shown in the About grid.
 export const aboutGalleryImages = [
   '/Images/e5h.webp',
@@ -229,7 +228,6 @@ export const aboutGalleryImages = [
   '/Images/e2a.webp',
   '/Images/e3a.webp',
 ];
-// ─────────────────────────────────────────────────────────────────────────────
 
 export const testimonialsData = [
   {

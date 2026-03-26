@@ -58,7 +58,7 @@ const Hero = () => {
     <section
       ref={heroRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black"
+      className="px-4 sm:px-6 lg:px-8 relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black"
     >
       {/* 3D Grid Background with Mouse Interaction */}
       <motion.div

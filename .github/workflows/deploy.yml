@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
@@ -27,10 +27,14 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Debug secrets
+      - name: Test FTP connectivity
         run: |
-          echo "FTP Server: ${{ secrets.FTP_SERVER }}"
-          echo "FTP Username: ${{ secrets.FTP_USERNAME }}"
+          echo "Testing DNS resolution..."
+          nslookup ${{ secrets.FTP_SERVER }} || echo "DNS FAILED"
+          echo "Testing port 21..."
+          nc -zv ${{ secrets.FTP_SERVER }} 21 -w 5 || echo "PORT 21 UNREACHABLE"
+          echo "Testing port 990..."
+          nc -zv ${{ secrets.FTP_SERVER }} 990 -w 5 || echo "PORT 990 UNREACHABLE"
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

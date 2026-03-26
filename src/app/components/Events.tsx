@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Calendar,
@@ -82,6 +82,8 @@ const Events = () => {
   const featuredEvent = getFeaturedEvent();
   const upcomingEvents = getUpcomingEvents();
   const pastEvents = getPastEvents();
+  const [showAll, setShowAll] = useState(false);
+  const visiblePastEvents = showAll ? pastEvents : pastEvents.slice(0, 3);
 
   const handleEventClick = (eventId: string) => {
     navigate(`/events/${eventId}`);
@@ -349,7 +351,7 @@ const Events = () => {
           <SectionHeading label="Archive" title="Past Events" />
 
           <div className="grid gap-4">
-            {pastEvents.map((event, index) => (
+            {visiblePastEvents.map((event, index) => (
               <motion.div
                 key={event.id}
                 initial={{ opacity: 0, y: 16 }}
@@ -416,6 +418,16 @@ const Events = () => {
               </motion.div>
             ))}
           </div>
+          {!showAll && pastEvents.length > 3 && (
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={() => setShowAll(true)}
+                className="inline-flex items-center gap-2 px-8 py-3 border-2 border-[var(--acm-blue)] text-[var(--acm-blue)] font-semibold rounded-xl hover:bg-[var(--acm-blue)] hover:text-white transition-all duration-200"
+              >
+                View All Events <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          )}
         </motion.div>
 
       </div>
