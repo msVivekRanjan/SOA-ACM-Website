@@ -69,9 +69,9 @@ const Testimonials = () => {
         >
           <div className="w-8 h-1 bg-[var(--acm-blue)] mx-auto rounded-full mb-6" />
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
-            Testimonials
+            Few kind words
           </h2>
-          <p className="text-lg text-gray-500">See what authorities are saying.</p>
+          <p className="text-lg text-gray-500">Read what our mentors have to say about us.</p>
         </motion.div>
 
         {/* Carousel Container */}
