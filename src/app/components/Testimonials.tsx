@@ -1,36 +1,16 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence, useInView } from 'motion/react';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { motion, useInView } from 'motion/react';
+import { ChevronLeft, ChevronRight, Quote, Sparkles } from 'lucide-react';
 import { getTestimonials } from '../../data/eventsData';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 const Testimonials = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
   const testimonials = getTestimonials();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 100 : -100,
-      opacity: 0,
-      scale: 0.90,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 100 : -100,
-      opacity: 0,
-    }),
-  };
 
   const swipeConfidenceThreshold = 10000;
   const swipePower = (offset: number, velocity: number) => {
@@ -38,7 +18,6 @@ const Testimonials = () => {
   };
 
   const paginate = useCallback((newDirection: number) => {
-    setDirection(newDirection);
     setCurrentIndex((prevIndex) => {
       let nextIndex = prevIndex + newDirection;
       if (nextIndex < 0) nextIndex = testimonials.length - 1;
@@ -52,144 +31,180 @@ const Testimonials = () => {
     if (!isHovered) {
       const timer = setInterval(() => {
         paginate(1);
-      }, 5000); // 5 seconds
+      }, 6000); 
       return () => clearInterval(timer);
     }
   }, [isHovered, paginate]);
 
+  if (!testimonials || testimonials.length === 0) return null;
+
+  // Calculates where each card should sit relative to the active index
+  const getPosition = (index: number) => {
+    const total = testimonials.length;
+    if (index === currentIndex) return 'center';
+    if (index === (currentIndex - 1 + total) % total) return 'left';
+    if (index === (currentIndex + 1) % total) return 'right';
+    return 'hidden';
+  };
+
+  // 3D Slider Physics
+  const slideVariants = {
+    center: { x: "0%", scale: 1, opacity: 1, zIndex: 30, filter: "blur(0px)" },
+    left: { x: "-75%", scale: 0.85, opacity: 0.35, zIndex: 20, filter: "blur(2px)" },
+    right: { x: "75%", scale: 0.85, opacity: 0.35, zIndex: 20, filter: "blur(2px)" },
+    hidden: { x: "0%", scale: 0.6, opacity: 0, zIndex: 0, filter: "blur(10px)" }
+  };
+
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-24 bg-white relative overflow-hidden" ref={ref}>
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="px-4 sm:px-6 lg:px-8 py-24 md:py-32 bg-[#030712] relative overflow-hidden" ref={ref}>
+      
+      {/* ══════════════════════════════════════════════════════
+          AMBIENT BACKGROUND ORBS
+      ══════════════════════════════════════════════════════ */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <motion.div 
+          animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[20%] left-[10%] w-[40%] h-[40%] rounded-full bg-blue-600/10 blur-[120px]" 
+        />
+        <motion.div 
+          animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[10%] right-[10%] w-[30%] h-[50%] rounded-full bg-cyan-600/10 blur-[120px]" 
+        />
+      </div>
+
+      <div className="max-w-[1400px] mx-auto relative z-10">
+        
         {/* Header Section */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-16 md:mb-24"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="w-8 h-1 bg-[var(--acm-blue)] mx-auto rounded-full mb-6" />
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
-            Few kind words
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 mb-6 backdrop-blur-md">
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <span className="text-sm font-semibold text-gray-300 tracking-wide uppercase">Community Voices</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Words from our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Mentors</span>
           </h2>
-          <p className="text-lg text-gray-500">Read what our mentors have to say about us.</p>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Insights and reflections from the leaders and seniors who guide our chapter.
+          </p>
         </motion.div>
 
-        {/* Carousel Container */}
+        {/* 3D Carousel Container */}
         <div
-          className="relative flex items-center justify-center min-h-[400px]"
+          className="relative w-full flex items-center justify-center min-h-[450px] md:min-h-[500px]"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-
-          {/* Left Arrow */}
+          {/* Glass Left Arrow - Positioned over the side cards */}
           <button
             onClick={() => paginate(-1)}
-            className="absolute left-0 md:-left-8 z-10 w-12 h-12 flex items-center justify-center bg-[var(--acm-blue)] text-white rounded-full shadow-lg hover:bg-[var(--acm-dark-blue)] hover:scale-105 transition-all focus:outline-none"
+            className="absolute left-2 md:left-8 z-40 w-12 h-12 flex items-center justify-center bg-white/[0.05] border border-white/10 text-white rounded-full backdrop-blur-xl hover:bg-white/[0.15] hover:scale-110 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all duration-300 focus:outline-none hidden sm:flex"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
 
-          {/* Main Content Area */}
-          <div className="w-full max-w-5xl relative overflow-hidden px-4 md:px-12 h-full flex items-center justify-center">
-            <AnimatePresence initial={false} custom={direction} mode="wait">
-              <motion.div
-                key={currentIndex}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: 'spring', stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 },
-                }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={(e, { offset, velocity }) => {
-                  const swipe = swipePower(offset.x, velocity.x);
-                  if (swipe < -swipeConfidenceThreshold) {
-                    paginate(1);
-                  } else if (swipe > swipeConfidenceThreshold) {
-                    paginate(-1);
-                  }
-                }}
-                className="w-full flex items-center gap-12 md:gap-16 relative"
-              >
-                {/* Left: Interactive Image with Blue Shapes (Smaller Size) */}
-                <div className="hidden md:flex relative shrink-0 items-center justify-center w-40 h-40 md:w-56 md:h-56">
-                  <motion.div
-                    className="absolute w-[90%] h-[90%] bg-[var(--acm-blue)] rounded-full opacity-80"
-                    initial={{ x: -10, y: -10 }}
-                    animate={{ x: 0, y: 0 }}
-                    transition={{ type: 'spring', delay: 0.4 }}
-                  />
-                  <motion.div
-                    className="absolute w-[80%] h-[80%] bg-[#0085C3] rounded-full opacity-60 mix-blend-multiply"
-                    initial={{ x: 10, y: 10 }}
-                    animate={{ x: -5, y: -5 }}
-                    transition={{ type: 'spring', delay: 0.4 }}
-                  />
-                  <ImageWithFallback
-                    src={testimonials[currentIndex].image}
-                    alt={testimonials[currentIndex].name}
-                    className="w-[85%] h-[85%] rounded-full object-cover relative z-10 border-4 border-white shadow-xl"
-                  />
-                </div>
+          {/* Main 3D Track Area */}
+          <div className="w-full relative overflow-visible h-full flex items-center justify-center">
+            {testimonials.map((testi: any, index: number) => {
+              const position = getPosition(index);
+              const isCenter = position === 'center';
 
-                {/* Right: Text Content (Larger Size) */}
-                <div className="flex-1 text-center md:text-left relative">
-                  <Quote className="absolute -top-6 -left-8 w-16 h-16 text-[var(--acm-blue)] opacity-10 hidden md:block" />
-                  <p className="text-2xl md:text-3xl lg:text-2.4xl text-gray-800 font-medium italic mb-10 leading-relaxed md:leading-snug">
-                    "{testimonials[currentIndex].quote}"
-                  </p>
-                  <div className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6">
-                    {/* Fallback image for mobile layout */}
-                    <div className="md:hidden w-16 h-16 shrink-0 relative">
-                      <ImageWithFallback
-                        src={testimonials[currentIndex].image}
-                        alt={testimonials[currentIndex].name}
-                        className="w-full h-full rounded-full object-cover border-2 border-[var(--acm-blue)]/20 shadow-sm"
-                      />
+              return (
+                <motion.div
+                  key={index}
+                  initial={false}
+                  animate={position}
+                  variants={slideVariants}
+                  transition={{ type: 'spring', stiffness: 250, damping: 25 }}
+                  // Sizing: Ensures cards are not too massive. w-[85%] for mobile, max-w-3xl for desktop limits the size cleanly.
+                  className={`absolute w-[85%] md:w-[65%] lg:w-[55%] max-w-3xl ${
+                    isCenter ? 'cursor-grab active:cursor-grabbing' : 'cursor-pointer'
+                  }`}
+                  drag={isCenter ? "x" : false}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.8}
+                  onDragEnd={(e, { offset, velocity }) => {
+                    if (!isCenter) return;
+                    const swipe = swipePower(offset.x, velocity.x);
+                    if (swipe < -swipeConfidenceThreshold) paginate(1);
+                    else if (swipe > swipeConfidenceThreshold) paginate(-1);
+                  }}
+                  onClick={() => {
+                    // Allows users to click the side cards to bring them to the center
+                    if (position === 'left') paginate(-1);
+                    if (position === 'right') paginate(1);
+                  }}
+                >
+                  {/* The Glass Slab */}
+                  <div className="relative bg-white/[0.02] border border-white/10 backdrop-blur-2xl rounded-[2rem] p-6 md:p-10 lg:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-10 shadow-2xl h-full">
+                    
+                    {/* Huge Ambient Quote Icon */}
+                    <Quote className="absolute top-4 left-4 md:top-8 md:left-8 w-20 h-20 text-white/[0.04] rotate-180 pointer-events-none" />
+
+                    {/* Left: Holographic Image Container */}
+                    <div className="relative shrink-0">
+                      <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-cyan-400 rounded-full blur-xl opacity-40 animate-pulse" />
+                      <div className="relative w-28 h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full p-1 bg-gradient-to-tr from-blue-500/50 to-cyan-400/50">
+                        <div className="w-full h-full rounded-full overflow-hidden border-4 border-[#030712] bg-[#030712]">
+                          <ImageWithFallback
+                            src={testi.image}
+                            alt={testi.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="text-xl md:text-2xl font-bold text-[var(--acm-blue)] mb-1">
-                        {testimonials[currentIndex].name}
-                      </h4>
-                      <p className="text-xs md:text-sm text-gray-500 uppercase tracking-widest font-semibold">
-                        {testimonials[currentIndex].role}
+
+                    {/* Right: Text Content */}
+                    <div className="flex-1 text-center md:text-left relative z-10">
+                      <p className="text-lg md:text-xl lg:text-2xl text-gray-200 font-medium leading-relaxed mb-6">
+                        "{testi.quote}"
                       </p>
+                      
+                      <div className="flex flex-col items-center md:items-start">
+                        <h4 className="text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-1">
+                          {testi.name}
+                        </h4>
+                        <p className="text-xs md:text-sm text-blue-400 uppercase tracking-widest font-semibold">
+                          {testi.role}
+                        </p>
+                      </div>
                     </div>
+
                   </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                </motion.div>
+              );
+            })}
           </div>
 
-          {/* Right Arrow */}
+          {/* Glass Right Arrow */}
           <button
             onClick={() => paginate(1)}
-            className="absolute right-0 md:-right-8 z-10 w-12 h-12 flex items-center justify-center bg-[var(--acm-blue)] text-white rounded-full shadow-lg hover:bg-[var(--acm-dark-blue)] hover:scale-105 transition-all focus:outline-none"
+            className="absolute right-2 md:right-8 z-40 w-12 h-12 flex items-center justify-center bg-white/[0.05] border border-white/10 text-white rounded-full backdrop-blur-xl hover:bg-white/[0.15] hover:scale-110 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all duration-300 focus:outline-none hidden sm:flex"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
         </div>
 
-        {/* Dot Indicators */}
-        <div className="flex justify-center items-center gap-3 mt-12">
+        {/* Cyberpunk Pagination Dots */}
+        <div className="flex justify-center items-center gap-3 mt-10 md:mt-16 relative z-40">
           {testimonials.map((_item: any, index: number) => (
             <button
               key={index}
-              onClick={() => {
-                setDirection(index > currentIndex ? 1 : -1);
-                setCurrentIndex(index);
-              }}
-              className={`h-2 transition-all duration-300 rounded-full ${index === currentIndex
-                ? 'w-8 bg-[var(--acm-blue)]'
-                : 'w-2 bg-gray-300 hover:bg-gray-400'
-                }`}
+              onClick={() => setCurrentIndex(index)}
+              className={`h-1.5 transition-all duration-500 rounded-full ${
+                index === currentIndex
+                  ? 'w-10 bg-gradient-to-r from-blue-400 to-cyan-400 shadow-[0_0_10px_rgba(56,189,248,0.5)]'
+                  : 'w-3 bg-white/20 hover:bg-white/40'
+              }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

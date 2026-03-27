@@ -1,192 +1,147 @@
-import { motion } from 'motion/react';
-import { useInView } from 'motion/react';
+import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
-import { Quote } from 'lucide-react';
+import { Quote, Sparkles } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
+/* ─────────────────────────────────────────────
+   Faculty Data Setup
+───────────────────────────────────────────── */
 const facultyData = [
   {
     name: 'Dr. Anukampa Behera',
     designation: 'Associate Professor, Department of CSE | SOADU',
     role: 'Faculty Sponsor | SOA ACM Students Chapter',
-    image:
-      '/Images/f1.webp',
-    quote:
-      "Research is not reserved for a chosen few; it begins the moment a student learns to ask meaningful questions. As engineering undergraduates, you already stand at the edge of discovery. I encourage each of you to explore, experiment, and contribute because today’s curiosity becomes tomorrow’s innovation.",
+    image: '/Images/f1.webp',
+    quote: "Research is not reserved for a chosen few; it begins the moment a student learns to ask meaningful questions. As engineering undergraduates, you already stand at the edge of discovery. I encourage each of you to explore, experiment, and contribute because today’s curiosity becomes tomorrow’s innovation.",
+    accent: 'from-blue-500 to-cyan-400',
+    borderColor: 'group-hover:border-blue-500/50'
   },
   {
     name: 'Mr. Prakash Kumar Jha',
     designation: 'Assistant Professor, Department of CSE | SOADU',
     role: 'Faculty Co-sponsor | SOA ACM Students Chapter',
-    image:
-      '/Images/f2.webp',
-    quote:
-      'Research does not begin in laboratories, it begins in curious minds. The moment you start questioning how and why things work, you step into the world of discovery. As engineering students, your ideas today can become tomorrow’s breakthroughs.',
+    image: '/Images/f2.webp',
+    quote: 'Research does not begin in laboratories, it begins in curious minds. The moment you start questioning how and why things work, you step into the world of discovery. As engineering students, your ideas today can become tomorrow’s breakthroughs.',
+    accent: 'from-cyan-400 to-blue-500',
+    borderColor: 'group-hover:border-cyan-400/50'
   },
 ];
 
+/* ─────────────────────────────────────────────
+   Main Section Component
+───────────────────────────────────────────── */
 const Faculty = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
-    <section id="faculty" className="px-4 sm:px-6 lg:px-8 py-24 bg-gray-50 relative overflow-hidden" ref={ref}>
-      <div className="max-w-6xl mx-auto">
-        {/* Heading */}
+    <section id="faculty" className="relative px-4 sm:px-6 lg:px-8 py-20 md:py-28 bg-[#030712] overflow-hidden" ref={ref}>
+      
+      {/* ══════════════════════════════════════════════════════
+          AMBIENT BACKGROUND ORBS & GRID
+      ══════════════════════════════════════════════════════ */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-[0.02]" />
+        
+        <motion.div 
+          animate={{ x: [0, 40, 0], y: [0, -40, 0] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-blue-600/10 blur-[120px]" 
+        />
+        <motion.div 
+          animate={{ x: [0, -50, 0], y: [0, 30, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[10%] left-[10%] w-[20%] h-[40%] rounded-full bg-cyan-600/10 blur-[120px]" 
+        />
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        
+        {/* Header Section */}
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-16 md:mb-24"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-5xl font-bold text-black mb-4">
-            Faculty <span className="text-[var(--acm-blue)]">Sponsors</span>
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 mb-6 backdrop-blur-md">
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <span className="text-sm font-semibold text-gray-300 tracking-wide uppercase">Leadership</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 tracking-tight">
+            Faculty <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Sponsors</span>
           </h2>
-          <div className="w-24 h-1 bg-[var(--acm-blue)] mx-auto rounded-full" />
+          
+          <p className="text-base md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            The guiding forces behind our chapter, bridging the gap between academic rigor and student-led innovation.
+          </p>
         </motion.div>
 
-        {/* Faculty Cards */}
-        <div className="space-y-16">
-          {facultyData.map((faculty, index) => (
-            <motion.div
-              key={index}
-              className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } items-center gap-12 bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 group relative overflow-hidden`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              whileHover={{
-                y: -8,
-                boxShadow: '0 25px 50px -12px rgba(0, 133, 195, 0.25)',
-              }}
-              whileTap={{
-                scale: 0.98,
-                boxShadow: '0 25px 50px -12px rgba(0, 133, 195, 0.25)',
-              }}
-            >
-              {/* Animated Background Gradient on Hover/Active */}
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500"
-                style={{
-                  background: 'radial-gradient(circle at 50% 0%, rgba(0, 133, 195, 0.05), transparent 70%)',
-                }}
-              />
+        {/* Faculty Cinematic Cards */}
+        <div className="space-y-10 md:space-y-16">
+          {facultyData.map((faculty, index) => {
+            const isEven = index % 2 === 0;
 
-              {/* Decorative Corner Accent */}
+            return (
               <motion.div
-                className="absolute top-0 right-0 w-32 h-32 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500"
-                style={{
-                  background: 'radial-gradient(circle at top right, rgba(0, 133, 195, 0.1), transparent 70%)',
-                }}
-              />
-
-              {/* Image */}
-              <motion.div
-                className="relative w-64 h-64 md:w-80 md:h-80 flex-shrink-0"
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2 }}
-                whileTap={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2 }}
+                key={index}
+                className={`group relative flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center md:items-stretch gap-8 md:gap-12 p-8 md:p-10 lg:p-12 rounded-[2rem] md:rounded-[2.5rem] bg-white/[0.02] border border-white/10 backdrop-blur-xl transition-all duration-500 hover:bg-white/[0.03] ${faculty.borderColor}`}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: index * 0.2 }}
               >
-                {/* Animated Background Rotate */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-[var(--acm-blue)] to-[var(--acm-dark-blue)] rounded-2xl"
-                  initial={{ rotate: 3 }}
-                  whileHover={{
-                    rotate: index % 2 === 0 ? 6 : -6,
-                    scale: 1.05,
-                  }}
-                  whileTap={{
-                    rotate: index % 2 === 0 ? 6 : -6,
-                    scale: 1.05,
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-
-                {/* Image Container with Hover Effect */}
-                <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-white shadow-2xl">
-                  <ImageWithFallback
-                    src={faculty.image}
-                    alt={faculty.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-active:scale-110"
-                  />
-
-                  {/* Overlay on Hover/Active */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-[var(--acm-blue)]/20 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500"
-                  />
+                
+                {/* ══════════════════════════════════════════════════════
+                    LEFT: PORTRAIT CONTAINER
+                ══════════════════════════════════════════════════════ */}
+                <div className="relative shrink-0 flex items-center justify-center">
+                  {/* Subtle Glow Behind Image */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${faculty.accent} opacity-0 group-hover:opacity-20 transition-opacity duration-700 blur-2xl rounded-full`} />
+                  
+                  {/* Image Wrapper - Properly scaled for presence and readability */}
+                  <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-2xl md:rounded-[1.5rem] overflow-hidden border border-white/10 shadow-2xl bg-[#0a0f1e] z-10">
+                    <ImageWithFallback
+                      src={faculty.image}
+                      alt={faculty.name}
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    {/* Dark gradient at the bottom for sleekness */}
+                    <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#030712]/80 to-transparent pointer-events-none" />
+                  </div>
                 </div>
+
+                {/* ══════════════════════════════════════════════════════
+                    RIGHT: CONTENT & QUOTE
+                ══════════════════════════════════════════════════════ */}
+                <div className={`flex-1 flex flex-col justify-center text-center ${isEven ? 'md:text-left' : 'md:text-right'} relative z-10`}>
+                  
+                  {/* Name & Titles */}
+                  <div className="mb-6 md:mb-8">
+                    <h3 className={`text-3xl sm:text-4xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r ${faculty.accent}`}>
+                      {faculty.name}
+                    </h3>
+                    <p className="text-white text-base md:text-lg font-medium tracking-tight mb-1">
+                      {faculty.role}
+                    </p>
+                    <p className="text-gray-500 text-sm md:text-base uppercase tracking-widest font-semibold">
+                      {faculty.designation}
+                    </p>
+                  </div>
+
+                  {/* Integrated Quote Block */}
+                  <div className={`relative ${isEven ? 'md:pl-8 md:border-l-2' : 'md:pr-8 md:border-r-2'} border-white/10 group-hover:border-blue-500/30 transition-colors duration-500`}>
+                    <Quote className={`hidden md:block absolute top-0 ${isEven ? '-left-5' : '-right-5'} w-10 h-10 text-white/5`} />
+                    <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed italic">
+                      "{faculty.quote}"
+                    </p>
+                  </div>
+
+                </div>
+
               </motion.div>
-
-              {/* Content */}
-              <motion.div
-                className="flex-1 relative z-10"
-                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                <motion.h3
-                  className="text-3xl font-bold text-black mb-2 transition-colors duration-300 group-hover:text-[var(--acm-blue)] group-active:text-[var(--acm-blue)]"
-                  whileHover={{ x: 5 }}
-                  whileTap={{ x: 5 }}
-                >
-                  {faculty.name}
-                </motion.h3>
-                <motion.p
-                  className="text-xl text-[var(--acm-blue)] mb-4"
-                  whileHover={{ x: 5 }}
-                  whileTap={{ x: 5 }}
-                >
-                  {faculty.designation}
-                </motion.p>
-                <motion.p
-                  className="text-gray-600 mb-8"
-                  whileHover={{ x: 5 }}
-                  whileTap={{ x: 5 }}
-                >
-                  {faculty.role}
-                </motion.p>
-
-                {/* Quote */}
-                <motion.div
-                  className="relative bg-gradient-to-br from-[var(--acm-blue)]/5 to-transparent rounded-2xl p-6 border-l-4 border-[var(--acm-blue)] overflow-hidden"
-                  whileHover={{
-                    scale: 1.02,
-                    backgroundColor: 'rgba(0, 133, 195, 0.08)',
-                  }}
-                  whileTap={{
-                    scale: 1.02,
-                    backgroundColor: 'rgba(0, 133, 195, 0.08)',
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {/* Animated Quote Icon */}
-                  <motion.div
-                    initial={{ opacity: 0.2, rotate: 0 }}
-                    whileHover={{ opacity: 0.3, rotate: 10, scale: 1.2 }}
-                    whileTap={{ opacity: 0.3, rotate: 10, scale: 1.2 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Quote className="w-10 h-10 text-[var(--acm-blue)] absolute top-4 right-4" />
-                  </motion.div>
-
-                  {/* Shine Effect on Hover/Tap */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-active:opacity-20"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: '100%' }}
-                    whileTap={{ x: '100%' }}
-                    transition={{ duration: 0.8 }}
-                  />
-
-                  <p className="text-lg text-gray-700 italic leading-relaxed relative z-10">
-                    "{faculty.quote}"
-                  </p>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,433 +1,342 @@
-import { motion } from 'motion/react';
-import { useInView } from 'motion/react';
+import { motion, useInView } from 'motion/react';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Calendar,
   MapPin,
-  Users,
-  Clock,
+  Calendar,
   ExternalLink,
   Award,
   ArrowUpRight,
-  ChevronRight,
+  Clock,
+  Ticket,
+  Sparkles
 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { getFeaturedEvent, getUpcomingEvents, getPastEvents } from '../../data/eventsData';
 
 /* ─────────────────────────────────────────────
-   Tiny reusable pill
+   Premium Glass Pills
 ───────────────────────────────────────────── */
 const Pill = ({
   children,
-  variant = 'blue',
+  variant = 'gray',
 }: {
   children: React.ReactNode;
-  variant?: 'blue' | 'outline' | 'white' | 'amber';
+  variant?: 'blue' | 'gray' | 'outline' | 'amber';
 }) => {
   const styles = {
-    blue: 'bg-[var(--acm-blue)] text-white',
-    outline: 'border border-[var(--acm-blue)]/40 text-[var(--acm-blue)] bg-[var(--acm-blue)]/8',
-    white: 'bg-white/15 text-white backdrop-blur-sm border border-white/20',
-    amber: 'bg-amber-400/15 text-amber-500 border border-amber-400/30',
+    blue: 'bg-gradient-to-r from-blue-500 to-cyan-400 text-white shadow-[0_0_15px_rgba(56,189,248,0.4)]',
+    gray: 'bg-white/[0.05] border border-white/10 text-gray-300',
+    outline: 'border border-cyan-500/30 text-cyan-400 bg-cyan-500/10',
+    amber: 'bg-amber-500/10 text-amber-400 border border-amber-500/20',
   };
   return (
-    <span
-      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wide ${styles[variant]}`}
-    >
+    <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider uppercase backdrop-blur-md ${styles[variant]}`}>
       {children}
     </span>
   );
 };
 
 /* ─────────────────────────────────────────────
-   Section heading with decorative rule
+   Apple-style Section Heading (Dark)
 ───────────────────────────────────────────── */
-const SectionHeading = ({
-  label,
-  title,
-  pulse = false,
-}: {
-  label: string;
-  title: string;
-  pulse?: boolean;
-}) => (
-  <div className="px-4 sm:px-6 lg:px-8 flex items-center gap-5 mb-12">
-    <div className="flex items-center gap-3 shrink-0">
-      {pulse ? (
-        <span className="relative flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--acm-blue)] opacity-70" />
-          <span className="relative inline-flex h-3 w-3 rounded-full bg-[var(--acm-blue)]" />
-        </span>
-      ) : (
-        <span className="h-3 w-3 rounded-full bg-[var(--acm-blue)]" />
-      )}
-      <span className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--acm-blue)]">
-        {label}
-      </span>
-    </div>
-    <div className="h-px flex-1 bg-gradient-to-r from-[var(--acm-blue)]/30 to-transparent" />
-    <h3 className="text-2xl font-bold text-gray-900 shrink-0">{title}</h3>
+const SectionHeading = ({ title, subtitle }: { title: string; subtitle?: string }) => (
+  <div className="mb-8 md:mb-12 flex flex-col items-start">
+    <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white flex items-center gap-3">
+      <Sparkles className="w-6 h-6 text-cyan-400" />
+      {title}
+    </h3>
+    {subtitle && <p className="text-gray-400 mt-2 text-sm md:text-base">{subtitle}</p>}
   </div>
 );
 
 /* ─────────────────────────────────────────────
-   Main component
+   Main Component
 ───────────────────────────────────────────── */
 const Events = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
   const navigate = useNavigate();
 
   const featuredEvent = getFeaturedEvent();
   const upcomingEvents = getUpcomingEvents();
   const pastEvents = getPastEvents();
+  
+  // Show max 4 events initially to maintain a clean 2x2 grid on desktop
+  const INITIAL_VISIBLE_COUNT = 4;
   const [showAll, setShowAll] = useState(false);
-  const visiblePastEvents = showAll ? pastEvents : pastEvents.slice(0, 3);
+  const visiblePastEvents = showAll ? pastEvents : pastEvents.slice(0, INITIAL_VISIBLE_COUNT);
 
   const handleEventClick = (eventId: string) => {
     navigate(`/events/${eventId}`);
   };
 
   return (
-    <section id="events" className="px-4 sm:px-6 lg:px-8 py-24 relative bg-white" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+    <section id="events" className="px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative bg-[#030712] overflow-hidden" ref={ref}>
+      
+      {/* ══════════════════════════════════════════════════════
+          AMBIENT BACKGROUND ORBS & GRID
+      ══════════════════════════════════════════════════════ */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-[0.02]" />
+        <motion.div 
+          animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[10%] left-[5%] w-[40%] h-[40%] rounded-full bg-blue-600/10 blur-[150px]" 
+        />
+        <motion.div 
+          animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[20%] right-[5%] w-[30%] h-[50%] rounded-full bg-cyan-600/10 blur-[150px]" 
+        />
+      </div>
 
-        {/* ── Page header ──────────────────────────────────────── */}
-        {/* <motion.div
-          className="mb-20"
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="text-xs font-bold tracking-[0.25em] uppercase text-[var(--acm-blue)] mb-3">
-            SOA ACM Student Chapter
-          </p>
-          <div className="flex items-end justify-between gap-6 flex-wrap">
-            <h2 className="text-6xl font-black text-gray-900 leading-none tracking-tight">
-              Events &amp;<br />
-              <span className="text-[var(--acm-blue)]">Programmes</span>
-            </h2>
-            <p className="text-gray-500 max-w-xs leading-relaxed text-sm">
-              Knowledge sessions, workshops, and hands-on training curated by ACM to push
-              the boundaries of what students can achieve.
-            </p>
-          </div>
-          <div className="mt-8 h-px bg-gray-200" />
-        </motion.div> */}
+      <div className="max-w-6xl mx-auto space-y-24 md:space-y-32 relative z-10">
 
+        {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-5xl font-bold text-black mb-4">
-            Our <span className="text-[var(--acm-blue)]">Events</span>
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 mb-6 backdrop-blur-md">
+            <Calendar className="w-4 h-4 text-cyan-400" />
+            <span className="text-sm font-semibold text-gray-300 tracking-wide uppercase">The Arena</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white mb-6">
+            Experience <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">ACM</span>
           </h2>
-          <div className="w-24 h-1 bg-[var(--acm-blue)] mx-auto rounded-full mb-4" />
-          <p className="text-xl text-black-400">Empowering students through engaging experiences</p>
+          <p className="text-base md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            Discover high-octane technical workshops, engaging seminars, and collaborative hackathons designed to elevate your skills.
+          </p>
         </motion.div>
 
         {/* ══════════════════════════════════════════════════════
-            FEATURED EVENT  —  Cinematic hero card
+            FEATURED EVENT — Glass Banner
         ══════════════════════════════════════════════════════ */}
         <motion.div
-          className="mb-24"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.15 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
         >
-          <SectionHeading label="Highlight" title="Featured Event" />
-
           <div
-            className="group relative rounded-3xl overflow-hidden cursor-pointer"
-            style={{ background: '#0a0f1e' }}
+            className="group relative flex flex-col md:flex-row bg-white/[0.02] border border-white/10 backdrop-blur-2xl rounded-[2rem] md:rounded-[2.5rem] overflow-hidden cursor-pointer shadow-2xl hover:bg-white/[0.04] transition-all duration-500"
             onClick={() => handleEventClick(featuredEvent.id)}
           >
-            {/* Full-bleed background image */}
-            <div className="absolute inset-0">
+            {/* Animated Hover Border */}
+            <div className="absolute inset-0 rounded-[2rem] md:rounded-[2.5rem] border-2 border-transparent group-hover:border-cyan-500/30 pointer-events-none transition-colors duration-500 z-20" />
+
+            {/* Image Section */}
+            <div className="relative h-64 md:h-auto md:w-2/5 overflow-hidden bg-[#0a0f1e]">
               <ImageWithFallback
                 src={featuredEvent.image}
                 alt={featuredEvent.title}
-                className="w-full h-full object-cover opacity-35 group-hover:opacity-45 group-hover:scale-105 transition-all duration-700"
+                className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1e] via-[#0a0f1e]/80 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1e]/60 to-transparent" />
-              {/* Ambient blue glow */}
-              <div className="absolute top-0 left-0 w-96 h-96 bg-[var(--acm-blue)]/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+              <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#030712] via-[#030712]/50 to-transparent" />
             </div>
 
-            <div className="relative z-10 p-10 md:p-16 min-h-[420px] flex flex-col justify-between">
-              {/* Top row */}
-              <div className="flex items-start justify-between gap-4 flex-wrap">
-                <div className="flex gap-2 flex-wrap">
-                  <Pill variant="blue">
-                    {featuredEvent.category || featuredEvent.type || 'Session'}
-                  </Pill>
-                  <Pill variant="white">{featuredEvent.mode}</Pill>
-                </div>
-                <div className="text-white/40 text-xs font-medium tracking-wider uppercase">
+            {/* Content Section */}
+            <div className="relative p-8 md:p-12 md:w-3/5 flex flex-col justify-center z-10">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                </span>
+                <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest">
+                  Highlight Event
+                </span>
+              </div>
+              
+              <h4 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+                {featuredEvent.title}
+              </h4>
+              <p className="text-gray-400 text-base md:text-lg line-clamp-2 md:line-clamp-3 mb-8 leading-relaxed">
+                {featuredEvent.description}
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-auto pt-6 border-t border-white/10">
+                <div className="flex items-center gap-2 text-gray-300 text-sm font-medium">
+                  <div className="w-8 h-8 rounded-full bg-cyan-500/10 flex items-center justify-center">
+                    <Calendar className="w-4 h-4 text-cyan-400" />
+                  </div>
                   {featuredEvent.date}
                 </div>
-              </div>
-
-              {/* Main content */}
-              <div className="mt-auto pt-12">
-                <h4 className="text-4xl md:text-5xl font-black text-white leading-tight mb-4 max-w-2xl">
-                  {featuredEvent.title}
-                </h4>
-                <p className="text-white/60 text-base leading-relaxed max-w-xl mb-8">
-                  {featuredEvent.description}
-                </p>
-
-                {/* Meta row */}
-                <div className="flex flex-wrap gap-6 mb-10">
-                  <div className="flex items-center gap-2 text-white/50 text-sm">
-                    <MapPin className="w-4 h-4 text-[var(--acm-blue)]" />
-                    {featuredEvent.location}
-                  </div>
-                  {featuredEvent.participants && (
-                    <div className="flex items-center gap-2 text-white/50 text-sm">
-                      <Users className="w-4 h-4 text-[var(--acm-blue)]" />
-                      {featuredEvent.participants} students participated
-                    </div>
-                  )}
+                <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/5 text-white text-sm font-semibold group-hover:bg-cyan-500 group-hover:text-[#030712] transition-all duration-300">
+                  Read Story <ArrowUpRight className="w-4 h-4" />
                 </div>
-
-                {/* CTA */}
-                {featuredEvent.status === 'upcoming' ? (
-                  <button className="inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--acm-blue)] text-white font-semibold rounded-xl hover:bg-[var(--acm-dark-blue)] transition-colors duration-200">
-                    Register Now <ArrowUpRight className="w-4 h-4" />
-                  </button>
-                ) : (
-                  <button className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-colors duration-200">
-                    View Event Details <ChevronRight className="w-4 h-4" />
-                  </button>
-                )}
               </div>
             </div>
           </div>
         </motion.div>
 
         {/* ══════════════════════════════════════════════════════
-            UPCOMING EVENTS  —  Split accent card
+            UPCOMING EVENT — Premium Spotlight
         ══════════════════════════════════════════════════════ */}
         {upcomingEvents.length > 0 && (
           <motion.div
-            className="mb-24"
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <SectionHeading label="Coming Up" title="Upcoming Events" pulse />
-
-            <div className="space-y-5">
-              {upcomingEvents.map((event, index) => (
-                <motion.div
+            <SectionHeading title="Initiating Next" subtitle="Secure your spot in our upcoming protocols." />
+            
+            <div className="space-y-6">
+              {upcomingEvents.map((event) => (
+                <div
                   key={event.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  className="group relative bg-white/[0.02] border border-cyan-500/30 backdrop-blur-xl rounded-[2rem] hover:bg-white/[0.04] shadow-[0_0_30px_rgba(34,211,238,0.05)] hover:shadow-[0_0_40px_rgba(34,211,238,0.15)] transition-all duration-500 overflow-hidden flex flex-col md:flex-row"
                 >
-                  <div
-                    className="group grid md:grid-cols-[1fr_2fr] rounded-2xl overflow-hidden border border-gray-200 hover:border-[var(--acm-blue)]/40 hover:shadow-xl hover:shadow-[var(--acm-blue)]/5 transition-all duration-300 cursor-pointer bg-white"
-                    onClick={() => handleEventClick(event.id)}
-                  >
-                    {/* Left — Dark accent panel with large date typography */}
-                    <div
-                      className="relative min-h-[260px] md:min-h-0 overflow-hidden"
-                      style={{ background: '#0a0f1e' }}
-                    >
-                      <ImageWithFallback
-                        src={event.image}
-                        alt={event.title}
-                        className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-35 group-hover:scale-105 transition-all duration-600"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-br from-[var(--acm-blue)]/20 to-transparent" />
+                  {/* Subtle Background Accent */}
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
-                      {/* Large typographic date */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                        <div className="text-[var(--acm-blue)] text-xs font-bold tracking-[0.2em] uppercase mb-3">
-                          Mark Your Calendar
-                        </div>
-                        <div className="text-white font-black leading-none">
-                          <div className="text-6xl md:text-7xl">
-                            {event.date.split(' ')[1]?.replace(',', '')}
-                          </div>
-                          <div className="text-lg font-semibold text-white/60 mt-1 tracking-widest uppercase">
-                            {event.date.split(' ')[0]} {event.date.split(' ')[2]}
-                          </div>
-                        </div>
-                        <div className="mt-5 flex items-center gap-2 text-white/40 text-sm">
-                          <Clock className="w-3.5 h-3.5" />
-                          {event.time}
-                        </div>
-                      </div>
-
-                      {/* UPCOMING badge */}
-                      <div className="absolute top-5 left-5">
-                        <span className="flex items-center gap-2 px-3 py-1.5 bg-[var(--acm-blue)] text-white text-xs font-bold rounded-lg tracking-wide">
-                          <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-70" />
-                            <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-                          </span>
-                          UPCOMING
-                        </span>
-                      </div>
+                  {/* Date Block - Left Side */}
+                  <div className="bg-[#0a0f1e]/80 md:w-56 p-6 md:p-8 border-b md:border-b-0 md:border-r border-white/10 flex flex-col items-center justify-center text-center relative z-10">
+                    <div className="text-cyan-400 text-xs font-bold uppercase tracking-widest mb-3">
+                      Upcoming
                     </div>
-
-                    {/* Right — Content panel */}
-                    <div className="p-8 md:p-10 flex flex-col justify-between">
-                      <div>
-                        <div className="flex flex-wrap gap-2 mb-5">
-                          <Pill variant="outline">{event.category}</Pill>
-                          {event.certificates && (
-                            <Pill variant="amber">
-                              <Award className="w-3 h-3" /> Certificates
-                            </Pill>
-                          )}
-                          <Pill variant="outline">{event.mode}</Pill>
-                        </div>
-
-                        <h4 className="text-2xl md:text-3xl font-black text-gray-900 leading-tight mb-3">
-                          {event.title}
-                        </h4>
-                        <p className="text-gray-500 leading-relaxed text-sm mb-7">
-                          {event.description}
-                        </p>
-
-                        <div className="space-y-2.5 mb-8">
-                          <div className="flex items-center gap-3 text-gray-600 text-sm">
-                            <MapPin className="w-4 h-4 text-[var(--acm-blue)] shrink-0" />
-                            {event.location}
-                          </div>
-                          {event.speaker && (
-                            <div className="flex items-center gap-3 text-gray-600 text-sm">
-                              <Users className="w-4 h-4 text-[var(--acm-blue)] shrink-0" />
-                              {event.speaker.name} · {event.speaker.designation}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* CTA */}
-                      <div className="flex items-center gap-4 flex-wrap">
-                        <a
-                          href={event.registrationLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--acm-blue)] text-white text-sm font-semibold rounded-xl hover:bg-[var(--acm-dark-blue)] transition-colors duration-200"
-                        >
-                          Register Now <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleEventClick(event.id);
-                          }}
-                          className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[var(--acm-blue)] font-medium transition-colors duration-200"
-                        >
-                          View Details <ChevronRight className="w-4 h-4" />
-                        </button>
-                      </div>
+                    <div className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500 mb-2">
+                      {event.date.split(' ')[1]?.replace(',', '')}
+                    </div>
+                    <div className="text-sm font-bold text-gray-400 uppercase tracking-widest">
+                      {event.date.split(' ')[0]} {event.date.split(' ')[2]}
+                    </div>
+                    <div className="mt-6 flex items-center gap-2 text-cyan-300 text-xs font-semibold bg-cyan-500/10 border border-cyan-500/20 px-4 py-2 rounded-full backdrop-blur-md">
+                      <Clock className="w-3.5 h-3.5" />
+                      {event.time}
                     </div>
                   </div>
-                </motion.div>
+
+                  {/* Content - Right Side */}
+                  <div className="p-6 md:p-10 flex-1 flex flex-col justify-center relative z-10">
+                    <div className="flex flex-wrap gap-3 mb-6">
+                      <Pill variant="blue">{event.category}</Pill>
+                      <Pill variant="outline">{event.mode}</Pill>
+                      {event.certificates && (
+                        <Pill variant="amber"><Award className="w-3.5 h-3.5" /> Certificates</Pill>
+                      )}
+                    </div>
+
+                    <h4 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                      {event.title}
+                    </h4>
+                    <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-8 max-w-2xl">
+                      {event.description}
+                    </p>
+
+                    <div className="flex items-center gap-2 text-gray-300 text-sm mb-8 font-medium">
+                      <MapPin className="w-4 h-4 text-cyan-400" />
+                      {event.location}
+                    </div>
+
+                    {/* Explicit Actions */}
+                    <div className="flex flex-col sm:flex-row items-center gap-4">
+                      <a
+                        href={event.registrationLink || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-blue-500 to-cyan-400 text-white text-sm font-bold rounded-xl hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(56,189,248,0.3)]"
+                      >
+                        <Ticket className="w-4 h-4" /> Register Now
+                      </a>
+                      <button
+                        onClick={() => handleEventClick(event.id)}
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white/5 border border-white/10 text-white text-sm font-semibold rounded-xl hover:bg-white/10 transition-colors duration-300"
+                      >
+                        View Details
+                      </button>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </motion.div>
         )}
 
         {/* ══════════════════════════════════════════════════════
-            PAST EVENTS  —  Editorial archive rows
+            PAST EVENTS — Glass Grid Archive
         ══════════════════════════════════════════════════════ */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.45 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <SectionHeading label="Archive" title="Past Events" />
+          <SectionHeading title="Event Archive" subtitle="Explore our past sessions, workshops, and milestones." />
 
-          <div className="grid gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {visiblePastEvents.map((event, index) => (
-              <motion.div
+              <div
                 key={event.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.45, delay: 0.55 + index * 0.08 }}
+                onClick={() => handleEventClick(event.id)}
+                className="group cursor-pointer bg-white/[0.02] border border-white/10 rounded-[2rem] overflow-hidden hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-500 flex flex-col h-full backdrop-blur-xl"
               >
-                <div
-                  className="group grid md:grid-cols-[72px_180px_1fr_auto] items-stretch rounded-2xl overflow-hidden bg-white border border-gray-100 hover:border-gray-300 hover:shadow-lg transition-all duration-300 cursor-pointer"
-                  onClick={() => handleEventClick(event.id)}
-                >
-                  {/* Index number column */}
-                  <div className="hidden md:flex items-center justify-center bg-gray-50 border-r border-gray-100 group-hover:bg-[var(--acm-blue)]/5 group-hover:border-[var(--acm-blue)]/15 transition-colors duration-300">
-                    <span className="text-3xl font-black text-gray-200 group-hover:text-[var(--acm-blue)]/25 transition-colors duration-300 select-none">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                  </div>
-
-                  {/* Image thumbnail */}
-                  <div className="relative h-28 md:h-full overflow-hidden bg-gray-100">
+                {/* Image Area */}
+                <div className="relative h-56 overflow-hidden bg-[#0a0f1e] p-1">
+                  <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden">
                     <ImageWithFallback
                       src={event.image}
                       alt={event.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80 group-hover:opacity-100"
                     />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-                    <span
-                      className={`absolute bottom-3 left-3 px-2 py-0.5 rounded text-xs font-semibold ${event.mode === 'Online'
-                        ? 'bg-emerald-500 text-white'
-                        : 'bg-orange-500 text-white'
-                        }`}
-                    >
-                      {event.mode}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-90" />
+                  </div>
+                  
+                  {/* Category Float */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="px-3 py-1.5 bg-[#030712]/60 backdrop-blur-md border border-white/10 text-cyan-300 text-[10px] font-bold uppercase tracking-widest rounded-lg">
+                      {event.category}
                     </span>
                   </div>
+                </div>
 
-                  {/* Text content */}
-                  <div className="p-5 md:p-7 min-w-0">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-bold text-[var(--acm-blue)] tracking-widest uppercase">
-                        {event.category}
-                      </span>
-                      <span className="text-gray-300 text-xs">·</span>
-                      <span className="text-xs text-gray-400">{event.date}</span>
+                {/* Content Area */}
+                <div className="p-6 md:p-8 flex flex-col flex-grow relative z-10">
+                  <h4 className="text-xl md:text-2xl font-bold text-white mb-3 line-clamp-2 group-hover:text-cyan-400 transition-colors duration-300">
+                    {event.title}
+                  </h4>
+                  <p className="text-gray-400 text-sm line-clamp-2 mb-8 flex-grow leading-relaxed">
+                    {event.description}
+                  </p>
+
+                  {/* Explicit Click Affordance Footer */}
+                  <div className="flex items-center justify-between pt-5 border-t border-white/10 mt-auto">
+                    <div className="flex items-center gap-2 text-gray-400 text-xs font-semibold tracking-wide">
+                      <Calendar className="w-4 h-4 text-cyan-500/50" />
+                      {event.date}
                     </div>
-                    <h4 className="text-base md:text-lg font-bold text-gray-900 leading-snug mb-1.5 truncate">
-                      {event.title}
-                    </h4>
-                    <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
-                      {event.description}
-                    </p>
-                    {event.location && (
-                      <div className="flex items-center gap-1.5 mt-3 text-gray-400 text-xs">
-                        <MapPin className="w-3 h-3" />
-                        {event.location}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="hidden md:flex items-center justify-center w-14 border-l border-gray-100 group-hover:border-[var(--acm-blue)]/15 transition-colors duration-300">
-                    <ArrowUpRight className="w-5 h-5 text-gray-300 group-hover:text-[var(--acm-blue)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                    <div className="flex items-center gap-1.5 text-cyan-400 text-sm font-bold opacity-80 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
+                      View Recap <ArrowUpRight className="w-4 h-4" />
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-          {!showAll && pastEvents.length > 3 && (
-            <div className="flex justify-center mt-8">
-              <button
-                onClick={() => setShowAll(true)}
-                className="inline-flex items-center gap-2 px-8 py-3 border-2 border-[var(--acm-blue)] text-[var(--acm-blue)] font-semibold rounded-xl hover:bg-[var(--acm-blue)] hover:text-white transition-all duration-200"
-              >
-                View All Events <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          )}
+
+          {/* High-Visibility Action Button */}
+{!showAll && pastEvents.length > INITIAL_VISIBLE_COUNT && (
+  <div className="flex justify-center mt-16 md:mt-24 relative">
+    {/* Ambient Glow behind the button */}
+    <div className="absolute inset-0 bg-cyan-500/20 blur-3xl rounded-full scale-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    
+    <button
+      onClick={() => setShowAll(true)}
+      className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#0a0f1e] text-white font-bold rounded-2xl border border-white/10 transition-all duration-300 hover:scale-105 active:scale-95 w-full md:w-auto overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+    >
+      {/* Animated Gradient Border */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-600 opacity-20 group-hover:opacity-100 transition-opacity duration-500 p-[1px] [mask-image:linear-gradient(white,white)_content-box,linear-gradient(white,white)]" />
+      
+      <span className="relative z-10 flex items-center gap-2 tracking-wide uppercase text-sm">
+        Access Full Archive 
+        <Sparkles className="w-5 h-5 text-cyan-400 animate-pulse" />
+      </span>
+
+      {/* Subtle Shine Sweep on Hover */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+    </button>
+  </div>
+)}
         </motion.div>
 
       </div>
