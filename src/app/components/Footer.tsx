@@ -112,7 +112,7 @@ const Footer = () => {
               </a>
             </div>
 
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+            {/* <div className="flex items-center gap-2 text-sm text-gray-500">
               <span>Design & Developed by</span>
               <a
                 href="https://www.linkedin.com/in/ratikantabehera/"
@@ -121,7 +121,7 @@ const Footer = () => {
                 className="text-[var(--acm-blue)] font-semibold hover:underline"
               >Ratikanta
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
 
