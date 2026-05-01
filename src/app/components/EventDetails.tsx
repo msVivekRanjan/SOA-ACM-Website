@@ -326,7 +326,7 @@ const EventDetails = () => {
                   </p>
 
                   <a
-                    href="https://forms.gle/WQAiPjrhnEgzTQXy7"
+                    href={event.registrationLink}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

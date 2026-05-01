@@ -1,12 +1,12 @@
 export const eventsData = [
   {
-    id: '7',
+    id: '8',
     title: 'From Words to Worlds: The Sequence Modeling Story',
     date: 'May 04, 2026',
     time: '4:00 PM – 5:00 PM IST',
     mode: 'Offline',
     status: 'upcoming',
-    category: 'Cybersecurity',
+    category: 'MachineLearning',
     type: 'Talk',
     description:
       'A brief overview of sequence modeling, how sequence models evolved from simple statistics to Transformers and beyond, reshaping how machines understand the world.',
