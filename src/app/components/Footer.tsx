@@ -112,16 +112,24 @@ const Footer = () => {
               </a>
             </div>
 
-            {/* <div className="flex items-center gap-2 text-sm text-gray-500">
-              <span>Design & Developed by</span>
+            <div className="flex items-center gap-2 text-sm text-gray-500">
+              <span>Designed by</span>
               <a
                 href="https://www.linkedin.com/in/ratikantabehera/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--acm-blue)] font-semibold hover:underline"
-              >Ratikanta
+              >Ratikanta,
               </a>
-            </div> */}
+              <span>Maintained by</span>
+              <a
+                href="https://www.linkedin.com/in/vivekranjansahoo7/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--acm-blue)] font-semibold hover:underline"
+              >Vivek Ranjan
+              </a>
+            </div>
           </div>
         </div>
 

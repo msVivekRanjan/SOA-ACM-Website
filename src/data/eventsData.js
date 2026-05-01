@@ -1,11 +1,36 @@
 export const eventsData = [
   {
     id: '7',
+    title: 'From Words to Worlds: The Sequence Modeling Story',
+    date: 'May 04, 2026',
+    time: '4:00 PM – 5:00 PM IST',
+    mode: 'Offline',
+    status: 'upcoming',
+    category: 'Cybersecurity',
+    type: 'Talk',
+    description:
+      'A brief overview of sequence modeling, how sequence models evolved from simple statistics to Transformers and beyond, reshaping how machines understand the world.',
+    fullDescription:
+      'Sequence modeling is one of the most fundamental problems in machine learning - and it shows up everywhere: language, music, video, financial markets, even images (flattened as pixel sequences). This talk builds the story from first principles: we begin with why some problems need a model at all (speed does not; translation does), then develop the hierarchy of approaches - word dictionaries, sentence dictionaries, phrase-level statistical MT, RNNs, Transformers, and Mamba - each solving a specific limitation of the last. Along the way, we explore all four sequence modeling paradigms (1 → 1, 1 → many, many → 1, many → many) and close with an open question: do agents need to communicate in English at all, or can they speak natively in embedding space?',
+    image: '/Images/e7a.webp',
+    participants: null,
+    location: 'Seminar Hall A, 2nd Floor, Bansuri Guru Auditorium',
+    registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLScPg6XLfvfZF_wuzqhdSuSDqkXzIrJvdV9DjtRxjEOGv7o0lg/viewform',
+    certificates: true,
+    speaker: {
+      name: 'Dr. Subhankar Mishra',
+      designation: 'Associate Professor, NISER',
+      photo: '/Images/sirphoto.webp',
+      bio: 'Assistant Professor in the School of Computer Sciences at the National Institute of Science Education and Research (NISER), Bhubaneswar. He works at the forefront of machine learning, robotics and privacy, with a particular focus on building intelligent, privacy-aware systems that can operate reliably in real-world environments. ',
+    },
+  },
+  {
+    id: '7',
     title: 'Inside the Mind of a Hacker',
     date: 'March 25, 2026',
     time: '4:15 PM – 6:00 PM IST',
     mode: 'Offline',
-    status: 'upcoming',
+    status: 'past',
     category: 'Cybersecurity',
     type: 'Talk',
     description:
