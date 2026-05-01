@@ -19,9 +19,9 @@ export const eventsData = [
     certificates: true,
     speaker: {
       name: 'Dr. Subhankar Mishra',
-      designation: 'Associate Professor, NISER',
+      designation: 'Faculty Member, School of Computer Sciences NISER',
       photo: '/Images/sirphoto.webp',
-      bio: 'Assistant Professor in the School of Computer Sciences at the National Institute of Science Education and Research (NISER), Bhubaneswar. He works at the forefront of machine learning, robotics and privacy, with a particular focus on building intelligent, privacy-aware systems that can operate reliably in real-world environments. ',
+      bio: 'Faculty member in the School of Computer Sciences at the National Institute of Science Education and Research (NISER), Bhubaneswar. He works at the forefront of machine learning, robotics and privacy, with a particular focus on building intelligent, privacy-aware systems that can operate reliably in real-world environments. ',
     },
   },
   {
