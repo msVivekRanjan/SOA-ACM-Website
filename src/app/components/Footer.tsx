@@ -121,7 +121,7 @@ const Footer = () => {
                 className="text-[var(--acm-blue)] font-semibold hover:underline"
               >Ratikanta,
               </a>
-              <span>Maintained by</span>
+              <span>Managed by</span>
               <a
                 href="https://www.vivekrs.in/"
                 target="_blank"
