@@ -1,8 +1,8 @@
 import { motion, useMotionValue, useTransform, useSpring } from 'motion/react';
 import { useRef } from 'react';
 import { ArrowRight, Sparkles, Code2, Cpu, Network, Zap, Box, Hexagon } from 'lucide-react';
-import soaLogo from '/Images/soa.webp';
-import acmLogo from '/Images/acm.webp';
+import soaLogo from '/Connect/soa.webp';
+import acmLogo from '/Connect/acm.webp';
 
 const Hero = () => {
   const mouseX = useMotionValue(0);

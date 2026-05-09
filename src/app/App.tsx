@@ -40,7 +40,7 @@ export default function App() {
       <div className="min-h-screen bg-gray-50">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/events/:id" element={<EventDetails />} />
+          <Route path="/event/:id" element={<EventDetails />} />
         </Routes>
       </div>
     </Router>

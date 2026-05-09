@@ -86,7 +86,7 @@ const Events = () => {
   const visiblePastEvents = showAll ? pastEvents : pastEvents.slice(0, 3);
 
   const handleEventClick = (eventId: string) => {
-    navigate(`/events/${eventId}`);
+    navigate(`/event/${eventId}`);
   };
 
   return (
@@ -150,7 +150,7 @@ const Events = () => {
               <ImageWithFallback
                 src={featuredEvent.image}
                 alt={featuredEvent.title}
-                className="w-full h-full object-cover opacity-35 group-hover:opacity-45 group-hover:scale-105 transition-all duration-700"
+                className="w-full h-full object-cover opacity-65 group-hover:opacity-85 group-hover:scale-105 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1e] via-[#0a0f1e]/80 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1e]/60 to-transparent" />
@@ -167,7 +167,7 @@ const Events = () => {
                   </Pill>
                   <Pill variant="white">{featuredEvent.mode}</Pill>
                 </div>
-                <div className="text-white/40 text-xs font-medium tracking-wider uppercase">
+                <div className="text-white/50 text-s font-medium tracking-wider uppercase">
                   {featuredEvent.date}
                 </div>
               </div>
@@ -248,18 +248,18 @@ const Events = () => {
 
                       {/* Large typographic date */}
                       <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                        <div className="text-[var(--acm-blue)] text-xs font-bold tracking-[0.2em] uppercase mb-3">
+                        <div className="text-[var(--acm-blue)] text-s font-bold tracking-[0.2em] uppercase mb-3">
                           Mark Your Calendar
                         </div>
                         <div className="text-white font-black leading-none">
                           <div className="text-6xl md:text-7xl">
                             {event.date.split(' ')[1]?.replace(',', '')}
                           </div>
-                          <div className="text-lg font-semibold text-white/60 mt-1 tracking-widest uppercase">
+                          <div className="text-2xl font-semibold text-white/90 mt- tracking-widest uppercase">
                             {event.date.split(' ')[0]} {event.date.split(' ')[2]}
                           </div>
                         </div>
-                        <div className="mt-5 flex items-center gap-2 text-white/40 text-sm">
+                        <div className="mt-5 flex items-center gap-2 text-white/70 text-sm">
                           <Clock className="w-3.5 h-3.5" />
                           {event.time}
                         </div>

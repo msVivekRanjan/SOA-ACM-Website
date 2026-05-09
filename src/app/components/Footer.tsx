@@ -123,7 +123,7 @@ const Footer = () => {
               </a>
               <span>Maintained by</span>
               <a
-                href="https://www.linkedin.com/in/vivekranjansahoo7/"
+                href="https://www.vivekrs.in/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--acm-blue)] font-semibold hover:underline"

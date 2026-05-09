@@ -10,7 +10,7 @@ const facultyData = [
     designation: 'Associate Professor, Department of CSE | SOADU',
     role: 'Faculty Sponsor | SOA ACM Students Chapter',
     image:
-      '/Images/f1.webp',
+      '/Speakers/AnukampaBehera.webp',
     quote:
       "Research is not reserved for a chosen few; it begins the moment a student learns to ask meaningful questions. As engineering undergraduates, you already stand at the edge of discovery. I encourage each of you to explore, experiment, and contribute because today’s curiosity becomes tomorrow’s innovation.",
   },
@@ -19,7 +19,7 @@ const facultyData = [
     designation: 'Assistant Professor, Department of CSE | SOADU',
     role: 'Faculty Co-sponsor | SOA ACM Students Chapter',
     image:
-      '/Images/f2.webp',
+      '/Speakers/PrakashKumarJha.webp',
     quote:
       'Research does not begin in laboratories, it begins in curious minds. The moment you start questioning how and why things work, you step into the world of discovery. As engineering students, your ideas today can become tomorrow’s breakthroughs.',
   },

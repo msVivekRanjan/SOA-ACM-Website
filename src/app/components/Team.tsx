@@ -43,112 +43,112 @@ const Team = () => {
       name: 'Debajyoti Bhakta',
       role: 'Chair',
       image:
-        '/Images/1.webp',
+        '/Members/2025-26/1.webp',
       linkedin: 'https://www.linkedin.com/in/debajyoti-bhakta/',
     },
     {
       name: 'Anshuman Barik',
       role: 'Vice Chair',
       image:
-        '/Images/2.webp',
+        '/Members/2025-26/2.webp',
       linkedin: 'https://www.linkedin.com/in/anshuman-barik',
     },
     {
       name: 'Ariba Shakil',
       role: 'Secretary',
       image:
-        '/Images/3.webp',
+        '/Members/2025-26/3.webp',
       linkedin: 'https://www.linkedin.com/in/ariba-shakil-b19a89314/',
     },
     {
       name: 'Guru Prasad Panda',
       role: 'Treasurer',
       image:
-        '/Images/4.webp',
+        '/Members/2025-26/4.webp',
       linkedin: 'https://www.linkedin.com/in/guruprasadpanda/',
     },
     {
       name: 'Vivek Ranjan Sahoo',
       role: 'Webmaster',
       image:
-        '/Images/7.webp',
+        '/Members/2025-26/7.webp',
       linkedin: 'https://www.linkedin.com/in/vivekranjansahoo7/',
     },
     {
       name: 'Biswajit Baral',
       role: 'Research & Innovation Team',
       image:
-        '/Images/5.webp',
+        '/Members/2025-26/5.webp',
       linkedin: 'https://www.linkedin.com/in/biswajit-baral-540991367/',
     },
     {
       name: 'Sallouni Mandal',
       role: 'Research & Innovation Team',
       image:
-        '/Images/10.webp',
+        '/Members/2025-26/10.webp',
       linkedin: 'https://www.linkedin.com/in/sallouni-mandal-3812532b7/',
     },
     {
       name: 'Soumyasri Mohapatra',
       role: 'Technical Team',
       image:
-        '/Images/9.webp',
+        '/Members/2025-26/9.webp',
       linkedin: 'https://www.linkedin.com/in/soumyasri-mohapatra-99211625b',
     },
     {
       name: 'Pratyush Sahoo',
       role: 'Technical Team',
       image:
-        '/Images/12.webp',
+        '/Members/2025-26/12.webp',
       linkedin: 'https://www.linkedin.com/in/pratyush-s-926984276/',
     },
     {
       name: 'Sanat Sinha',
       role: 'Technical Team',
       image:
-        '/Images/16.webp',
+        '/Members/2025-26/16.webp',
       linkedin: 'https://www.linkedin.com/in/sanatsinhaa/',
     },
     {
       name: 'Rohan Kumar Sahoo',
       role: 'Event & Operations Team',
       image:
-        '/Images/13.webp',
+        '/Members/2025-26/13.webp',
       linkedin: 'https://www.linkedin.com/in/rohankumarsahoo',
     },
     {
       name: 'Aditya Priyadarshan',
       role: 'Event & Operations Team',
       image:
-        '/Images/6.webp',
+        '/Members/2025-26/6.webp',
       linkedin: 'https://www.linkedin.com/in/aditya-priyadarshan-b1ba9126b/',
     },
     {
       name: 'Nayanika Debnath',
       role: 'Design & Media Team',
       image:
-        '/Images/8.webp',
+        '/Members/2025-26/8.webp',
       linkedin: 'http://www.linkedin.com/in/nayanika-debnath-164633315',
     },
     {
       name: 'Ishan Sinha',
       role: 'Design & Media Team',
       image:
-        '/Images/11.webp',
+        '/Members/2025-26/11.webp',
       linkedin: 'https://github.com/IshanDevz',
     },
     {
       name: 'Raj Sahasransu Biswal',
       role: 'Public Relations Team',
       image:
-        '/Images/14.webp',
+        '/Members/2025-26/14.webp',
       linkedin: 'https://www.linkedin.com/in/raj-sahasransu-biswal/',
     },
     {
       name: 'Ayush Ranjan Pradhan',
       role: 'Public Relations Team',
       image:
-        '/Images/15.webp',
+        '/Members/2025-26/15.webp',
       linkedin: 'https://www.linkedin.com/in/ayush-ranjan-pradhan-008468309/',
     },
 
