@@ -11,3 +11,8 @@ deployment:
     - /bin/cp -R dist/assets $DEPLOYPATH
     - /bin/cp -R dist/Images $DEPLOYPATH
     - /bin/cp -R dist/Connect $DEPLOYPATH
+    - /bin/cp -R dist/Banner $DEPLOYPATH
+    - /bin/cp -R dist/documents $DEPLOYPATH
+    - /bin/cp -R dist/EventsGallery $DEPLOYPATH
+    - /bin/cp -R dist/Members $DEPLOYPATH
+    - /bin/cp -R dist/Speakers $DEPLOYPATH
