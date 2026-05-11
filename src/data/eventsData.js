@@ -15,7 +15,7 @@ export const eventsData = [
     fullDescription:
       'Sequence modeling is one of the most fundamental problems in machine learning - and it shows up everywhere: language, music, video, financial markets, even images (flattened as pixel sequences). This talk builds the story from first principles: we begin with why some problems need a model at all (speed does not; translation does), then develop the hierarchy of approaches - word dictionaries, sentence dictionaries, phrase-level statistical MT, RNNs, Transformers, and Mamba - each solving a specific limitation of the last. Along the way, we explore all four sequence modeling paradigms (1 → 1, 1 → many, many → 1, many → many) and close with an open question: do agents need to communicate in English at all, or can they speak natively in embedding space?',
     image: '/Banner/e8.webp',
-    participants: '45+',
+    participants: '85+',
     location: 'Seminar Hall A, 2nd Floor, Bansuri Guru Auditorium',
     registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLScPg6XLfvfZF_wuzqhdSuSDqkXzIrJvdV9DjtRxjEOGv7o0lg/viewform',
     certificates: true,
